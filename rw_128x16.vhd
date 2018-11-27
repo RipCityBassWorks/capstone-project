@@ -4,8 +4,8 @@
 -- Create Date: 11/04/2018 09:11:15 PM
 -- Design Name: rw_128x16.vhd
 -- Module Name: rw_128x16 - rw_128x16_arch
--- Project Name: capstone-fpga-memory-model
--- Target Devices: XC7A35TICSG324-1L
+-- Project Name: capstone-project
+-- Target Devices: XC7A35TCPG236-1
 -- Tool Versions: Vivado 2018.2
 -- Description: Read/Write memory, 128 blocks of 16 bits
 -- 2,048 bits = 256 Bytes total used
