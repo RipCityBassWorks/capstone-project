@@ -4,8 +4,8 @@
 -- Create Date: 11/03/2018 01:44:35 PM
 -- Design Name: lfsr.vhd
 -- Module Name: lfsr - lfsr_arch
--- Project Name: capstone-fpga-memory-model
--- Target Devices: XC7A35TICSG324-1L
+-- Project Name: capstone-project
+-- Target Devices: XC7A35TCPG236-1
 -- Tool Versions: Vivado 2018.2
 -- Description: Linear Feedback Shift Register 
 -- for pseudo random number generation
