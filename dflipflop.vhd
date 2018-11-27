@@ -4,8 +4,8 @@
 -- Create Date: 11/03/2018 04:49:20 PM
 -- Design Name: dflipflop.vhd
 -- Module Name: dflipflop - dflipflop_arch
--- Project Name: capstone-fpga-memory-model
--- Target Devices: XC7A35TICSG324-1L
+-- Project Name: capstone-project
+-- Target Devices: XC7A35TCPG236-1
 -- Tool Versions: Vivado 2018.2 
 -- Description: logic for a D-flip-flop
 -- Component of btn_debounce.vhd
