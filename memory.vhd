@@ -4,8 +4,8 @@
 -- Create Date: 11/05/2018 12:53:02 PM
 -- Design Name: memory.vhd
 -- Module Name: memory - memory_arch
--- Project Name: capstone-fpga-memory-model 
--- Target Devices: XC7A35TICSG324-1L
+-- Project Name: capstone-project
+-- Target Devices: XC7A35TCPG236-1
 -- Tool Versions: Vivado 2018.2
 -- Description: control for rw_128x32.vhd
 -- Component of xc7_top_level.vhd
@@ -65,7 +65,7 @@ begin
                 write_en <= '1';
             elsif(rising_edge(clk)) then
                 if(write_en = '1' and data_in /= "0000000000000000") then
-                    if(addr_int = 7) then
+                    if(addr_int = 12) then
                         addr_int <= 0;
                         write_en <= '0';
                     else
@@ -74,7 +74,7 @@ begin
                 elsif(write_en = '0') then
                     --13 address values return 7 numbers to the LEDs
                     --This is probably due to the 2 second delay on LED decoder
-                    if(addr_int = 7) then
+                    if(addr_int = 12) then
                         addr_int <= 0;
                     else
                         addr_int <= addr_int + 1;
