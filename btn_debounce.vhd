@@ -4,8 +4,8 @@
 -- Create Date: 11/03/2018 04:40:02 PM
 -- Design Name: btn_debounce.vhd
 -- Module Name: btn_debounce - btn_debounce_arch
--- Project Name: capstone-fpga-memory-model
--- Target Devices: XC7A35TICSG324-1L
+-- Project Name: capstone-project
+-- Target Devices: XC7A35TCPG236-1
 -- Tool Versions: Vivado 2018.2 
 -- Description: debounces the pushbutton(s) 
 -- Component of xc7_top_level.vhd
