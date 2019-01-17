@@ -52,6 +52,8 @@ architecture xc7_top_level_arch of xc7_top_level is
         Port(
             clk             : in    std_logic;
             reset           : in    std_logic;
+            anode           : out   std_logic_vector(3 downto 0);
+            dp              : out   std_logic;
             bin_in          : in    std_logic_vector(15 downto 0);
             hex_out         : out   std_logic_vector(6 downto 0) 
         );
@@ -59,6 +61,7 @@ architecture xc7_top_level_arch of xc7_top_level is
     
     component lfsr is
         port(
+            sys_clk         : in    std_logic;
             clock           : in    std_logic;
             reset           : in    std_logic;
             en              : in    std_logic;
@@ -68,15 +71,15 @@ architecture xc7_top_level_arch of xc7_top_level is
         );
     end component lfsr;
     
-    component memory is
-        Port( 
-            clk             : in    std_logic;
-            reset           : in    std_logic;
-            event_en        : in    std_logic;
-            data_in         : in    std_logic_vector(15 downto 0);
-            data_out        : out   std_logic_vector(15 downto 0) 
-        );
-    end component memory;
+--    component memory is
+--        Port( 
+--            clk             : in    std_logic;
+--            reset           : in    std_logic;
+--            event_en        : in    std_logic;
+--            data_in         : in    std_logic_vector(15 downto 0);
+--            data_out        : out   std_logic_vector(15 downto 0) 
+--        );
+--    end component memory;
     
     component btn_debounce is 
         port(
@@ -158,43 +161,36 @@ architecture xc7_top_level_arch of xc7_top_level is
 --SIGNALS                                                                                                
     signal clock            : std_logic;
     signal reset            : std_logic                         := sw(3);--ck_rst;
-    --btn(0) debounced
-    signal pb_0             : std_logic;   
-    --btn(1) debounced     
-    signal pb_1             : std_logic;
-    --btn(2) debounced
-    signal pb_2             : std_logic;
-    --btn(3) debounced
-    signal pb_3             : std_logic;
+    signal pb_0             : std_logic;                        --btn(0) debounced 
     signal event_en         : std_logic                         := pb_0;
     signal mem_block_in     : std_logic_vector(15 downto 0);
     signal mem_block_out    : std_logic_vector(15 downto 0);
-    signal reg_in           : std_logic_vector(15 downto 0)     := "1110000100000000";  
+    signal reg_in           : std_logic_vector(15 downto 0)     := "1010110011100001";  
     signal random_out       : std_logic_vector(15 downto 0);
     signal sys_clks_sec     : std_logic_vector(31 downto 0)     := "00000101111101011110000100000000";      
           
---UART_TX_CTRL control signals
+    --UART_TX_CTRL control signals
     signal uartRdy : std_logic;
     signal uartSend : std_logic := '0';
     signal uartData : std_logic_vector (7 downto 0):= "00000000";
     signal uartTX : std_logic;
     signal uartCLK : std_logic;
---CHAR_ARRAY to hold output of the LFSR
+    --CHAR_ARRAY to hold output of the LFSR
     signal dataCHAR : CHAR_ARRAY(0 to 1);   
---Current uart state signal
+    --Current uart state signal
     signal uartState : UART_STATE_TYPE := RST_REG;
---Contains the current string being sent over uart.
+    --Contains the current string being sent over uart.
     signal sendStr : CHAR_ARRAY(0 to (MAX_STR_LEN - 1));
     
---Contains the length of the current string being sent over uart.
+    --Contains the length of the current string being sent over uart.
     signal strEnd : natural;
     
---Contains the index of the next character to be sent over uart
---within the sendStr variable.
+    --Contains the index of the next character to be sent over uart
+    --within the sendStr variable.
     signal strIndex : natural;        
---this counter counts the amount of time paused in the UART reset state
+    --this counter counts the amount of time paused in the UART reset state
     signal reset_cntr : std_logic_vector (17 downto 0) := (others=>'0');  
---These signals are used to time the UART output so that it is readable
+    --These signals are used to time the UART output so that it is readable
     constant tmr_val  :   integer := 50000000;
     signal tmr         :  integer :=0;
     signal tmr_tgl      : std_logic;      
@@ -208,31 +204,7 @@ begin
             pb_in       => btn(0),
             pb_out      => pb_0
         );
-    
-    PUSH_BUTTON_ONE    :   btn_debounce
-        port map(
-            clock       => CLK100MHZ,
-            reset       => reset,
-            pb_in       => btn(1),
-            pb_out      => pb_1
-        ); 
-        
-    PUSH_BUTTON_TWO    :   btn_debounce
-        port map(
-            clock       => CLK100MHZ,
-            reset       => reset,
-            pb_in       => btn(2),
-            pb_out      => pb_2
-        );  
-    
-    PUSH_BUTTON_THREE    :   btn_debounce
-        port map(
-            clock       => CLK100MHZ,
-            reset       => reset,
-            pb_in       => btn(3),
-            pb_out      => pb_3
-        ); 
-        
+       
     DIVIDE_CLOCK    :   clock_divider   
         port map(
             clk_in      => CLK100MHZ, 
@@ -243,14 +215,17 @@ begin
         
     SEVEN_SEGMENT_DISPLAY      :   char_decoder
         port map(
-            clk         => clock,
+            clk         => CLK100MHZ,
             reset       => reset,
-            bin_in      => mem_block_out,
+            anode       => an,
+            dp          => dp,
+            bin_in      => mem_block_in,
             hex_out     => seg
         );
         
     SHIFT_REG       :   lfsr
         port map(
+            sys_clk     => CLK100MHZ,
             clock       => clock,
             en          => event_en,
             reset       => reset,      
@@ -259,17 +234,19 @@ begin
             random_out  => random_out 
         );
     
-    RW_MEMORY       :   memory
-        port map(
-            clk         => clock,
-            reset       => reset,
-            event_en    => event_en,
-            data_in     => random_out,
-            data_out    => mem_block_out
-        );
+--    RW_MEMORY       :   memory
+--        port map(
+--            clk         => clock,
+--            reset       => reset,
+--            event_en    => event_en,
+--            data_in     => random_out,
+--            data_out    => mem_block_out
+--        );
+        
+    led <= sw;
+        
+        
 
-        an <= "0111";
-        dp <= '1';
                
         ----------------------------------------------------------
         ------              UART Control                   -------
