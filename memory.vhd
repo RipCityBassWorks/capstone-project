@@ -60,7 +60,7 @@ begin
     
     DATA_RW : process(clk, reset)
         begin
-            if(reset = '0') then
+            if(reset = '1') then
                 addr_int <= 0;
                 write_en <= '1';
             elsif(rising_edge(clk)) then
