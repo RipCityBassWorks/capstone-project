@@ -7,8 +7,13 @@
 -- Project Name: capstone-project
 -- Target Devices: XC7A35TCPG236-1
 -- Tool Versions: Vivado 2018.2
--- Description: Linear Feedback Shift Register 
+-- Description: 
+-- 16 bit Fibonacci configuration
+-- Linear Feedback Shift Register 
 -- for pseudo random number generation
+--
+-- User input can insert a 1 in a slot of the vector
+-- Determined by a 16 digit counter 
 -- Component of xc7_top_level.vhd
 ----------------------------------------------------------------------------------
 
@@ -19,6 +24,7 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 entity lfsr is
     port(
+        sys_clk     : in    std_logic;
         clock       : in    std_logic;
         reset       : in    std_logic;
         en          : in    std_logic;
@@ -30,31 +36,61 @@ end entity lfsr;
 
 architecture lfsr_arch of lfsr is
 
+--COMPONENT DECLARATIONS  
+    component delay_counter is
+        port(
+            clock           : in    std_logic;
+            reset           : in    std_logic;
+            delay_out       : out   std_logic
+        );
+    end component delay_counter;
     
 --SIGNALS    
-    signal shift    : std_logic_vector(15 downto 0)     := reg_in;
+    signal shift    	: std_logic_vector(15 downto 0)  := reg_in;
+    signal delay        : std_logic;
+    signal xor_out      : std_logic;
+    signal count        : integer;
 
 begin
-
-    LINEAR_FEEDBACK_SHIFT_REGISTER  :   process(clock, reset, en, reg_in)
+    
+    TWO_SEC_DELAY  :   delay_counter
+        port map(
+            clock           => sys_clk,
+            reset           => reset,
+            delay_out       => delay
+        );
+    
+    
+    LINEAR_FEEDBACK_SHIFT_REGISTER  :   process(sys_clk, reset, en, reg_in)
         begin
-            if(reset = '0') then
+            if(reset = '1') then
                 shift <= reg_in;
-            elsif(rising_edge(clock)) then
+            elsif(rising_edge(sys_clk)) then
                 if(en = '1') then
-                    shift(15) <= shift(0);
-                    shift(14) <= shift(15) xor shift(0);
-                    shift(13 downto 0) <= shift(14 downto 1);
+                    shift(count) <= '1';
                     random_out <= shift;
-                elsif(en = '0') then
-                    shift(15) <= shift(0);
-                    shift(14) <= shift(15);
-                    shift(13 downto 0) <= shift(14 downto 1);
-                    random_out <= "0000000000000000";
+                end if;
+                if(delay = '1') then
+                    xor_out <= shift(10) xor (shift(12) xor (shift(15) xor shift(13)));
+                    shift(14 downto 0) <= shift(15 downto 1);
+                    shift(15) <= xor_out;
+                    lfsr_out <= shift;
                 end if;
             end if;
-        end process;
-     
-     lfsr_out <= shift;           
-
+    end process;
+    
+    
+    EVENT_COUNTER   :   process(clock, reset) 
+        begin
+            if(reset = '1') then
+                count <= 0;
+            elsif(rising_edge(clock)) then
+                if(count = 15) then
+                    count <= 0;
+                else
+                    count <= count + 1;
+                end if;
+            end if;
+    end process;
+    
 end lfsr_arch;
