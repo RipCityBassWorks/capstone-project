@@ -32,7 +32,7 @@ begin
     
     DFF : process(clk, reset)
         begin 
-            if(reset = '0') then 
+            if(reset = '1') then 
                 Q <= '0';
                 Qn <= '1';
             elsif(rising_edge(clk)) then
