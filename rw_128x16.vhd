@@ -42,7 +42,7 @@ begin
 
     ENABLE : process(clock, reset)
         begin
-            if(reset = '0') then
+            if(reset = '1') then
                en <= '0';
             elsif(rising_edge(clock)) then 
                 if((to_integer(unsigned(address)) >= 0) and 
