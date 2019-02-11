@@ -22,10 +22,13 @@ Senior Capstone Project FPGA Random Number Generator
 	* User enable inserts a '1' at a slot of LFSR determined by a 16 bit counter 
 	* User enable controlled by btn(0)
 #### UART Output
-	* Updates at the user selected clock 
-	* mem_block_in and random_out are converted to either integer or hexadecimal values 
-    * Displays mem_block_in and random_out in 2 separate columns on a computer terminal
-    * This way the results of the button pushes can be easily seen by the user
+	* Updates at system clock
+	* 2 second delay between each data stream concurrent with the LFSR delay
+	* lfsr_out is converted to the ASCII representation of hexadecimal characters
+	* Terminal output displays the hexadecimal LFSR result along with a '1' if the user enable condition is true
+	* Reset condition pauses the data stream
+	* Data stream resumes when reset = '0'
+
 
 ## Road-map
 
@@ -35,7 +38,7 @@ Master XDC constants file <br />
 Provided by Digilent Corp. 
 
 ### xc7_top_level.vhd
-STATUS: in progress <br />
+STATUS: complete <br />
 Top level VHDL file <br />
 Pin I/O and component declarations
 
@@ -49,6 +52,16 @@ STATUS: complete <br />
 Displays the binary value output <br />
 of the LFSR as hexadecimal digits on <br />
 the 7 segment display
+
+
+### display_counter.vhd 
+STATUS: complete <br />
+Handles the timing for the 7 segment display <br />
+-- Anode and cathode are both driven low when active <br />
+-- All digits should be driven once every 1 to 16ms <br />
+-- Refresh period is 10ms <br />
+-- 100Hz refresh rate <br />
+-- A digit is refreshed every 2.5ms 
 
 
 ### delay_counter.vhd
@@ -65,20 +78,6 @@ Used for generating hardware level <br />
 16 bit Pseudo random numbers 
 
 
-### rw_128x16.vhd
-STATUS: in progress <br />
-Memory to store and retrieve Pseudo random <br />
-numbers generated from lfsr.vhd on the FPGA <br />
-VHDL read/write memory model using an array of vectors
-
-
-### memory.vhd 
-STATUS: in progress <br />
-Control for rw_128x32.vhd <br />
-Populates the r/w memory with 16 bit numbers <br />
-And then reads back the values <br />
-
-
 ### btn_debounce.vhd 
 STATUS: complete <br />
 control component for debouncing and <br />
@@ -92,7 +91,7 @@ Used for debouncing the push buttons
 
 
 ### UART_TX_CTRL.vhd
-STATUS: In progress <br />
+STATUS: complete <br />
 Xilinx IP Core for communication to a computer <br />
 Terminal over UART. The numbers stored in memory will be <br />
 Sent as inputs and displayed in the computer terminal
