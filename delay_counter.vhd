@@ -7,8 +7,9 @@
 -- Project Name: capstone-fpga-memory-model
 -- Target Devices: XC7A35TICSG324-1L
 -- Tool Versions: Vivado 2018.2
--- Description: 0.5 second delay counter used for updating the LFSR
--- Component of lfsr.vhd
+-- Description: 2 second delay counter used for updating 
+-- the LFSR and sending new data to the UART
+-- Component of xc7_top_level.vhd
 ----------------------------------------------------------------------------------
 
 
@@ -18,7 +19,7 @@ use IEEE.NUMERIC_STD.ALL;
 
 entity delay_counter is
     port(
-        clock           : in    std_logic;
+        clk             : in    std_logic;
         reset           : in    std_logic;
         delay_out       : out   std_logic
     );
@@ -31,11 +32,11 @@ architecture delay_counter_arch of delay_counter is
     
 begin
     
-    ONE_SEC_DELAY : process(clock, reset)
+    DELAY_COUNT :   process(clk, reset)
         begin
             if(reset = '1') then
                 cnt_int <= 0;
-            elsif(rising_edge(clock)) then
+            elsif(rising_edge(clk)) then
                 if(cnt_int = (delay_int - 1)) then
                     cnt_int <= 0;
                     delay_out <= '1';
