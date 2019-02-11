@@ -79,22 +79,26 @@ architecture char_decoder_arch of char_decoder is
                 end case;
         end process;
     
-		process(reset, seg_sel, bin_in)
+		process(clk, reset, seg_sel, bin_in)
             begin
-                case(seg_sel) is
-                    when "00" => 
-                                an <= "0111";                       -- activate LED1 and Deactivate LED2, LED3, LED4
-                                segment <= bin_in(15 downto 12);
-                    when "01" =>
-                                an <= "1011";                       -- activate LED2 and Deactivate LED1, LED3, LED4
-                                segment <= bin_in(11 downto 8);
-                    when "10" =>
-                                an <= "1101";                       -- activate LED3 and Deactivate LED2, LED1, LED4
-                                segment <= bin_in(7 downto 4);
-                    when "11" =>
-                                an <= "1110";                       -- activate LED4 and Deactivate LED2, LED3, LED1
-                                segment <= bin_in(3 downto 0);
-                end case;
+                if(reset = '1') then
+                    an <= "1111";
+                elsif(rising_edge(clk)) then
+                    case(seg_sel) is
+                        when "00" => 
+                                    an <= "0111";                       -- activate LED1 and Deactivate LED2, LED3, LED4
+                                    segment <= bin_in(15 downto 12);
+                        when "01" =>
+                                    an <= "1011";                       -- activate LED2 and Deactivate LED1, LED3, LED4
+                                    segment <= bin_in(11 downto 8);
+                        when "10" =>
+                                    an <= "1101";                       -- activate LED3 and Deactivate LED2, LED1, LED4
+                                    segment <= bin_in(7 downto 4);
+                        when "11" =>
+                                    an <= "1110";                       -- activate LED4 and Deactivate LED2, LED3, LED1
+                                    segment <= bin_in(3 downto 0);
+                    end case;
+                end if;
 		end process;
         
         anode <= an;
