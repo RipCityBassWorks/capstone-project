@@ -269,8 +269,8 @@ set_property PACKAGE_PIN U17 [get_ports {btn[4]}]
 
 
 ##USB-RS232 Interface
-set_property PACKAGE_PIN B18 [get_ports UART_TXD]
-    set_property LOC B18 [get_ports UART_TXD]
+set_property PACKAGE_PIN A18 [get_ports UART_TXD]
+    set_property LOC A18 [get_ports UART_TXD]
 	set_property IOSTANDARD LVCMOS33 [get_ports UART_TXD]
 #set_property PACKAGE_PIN A18 [get_ports RsTx]
 #	set_property IOSTANDARD LVCMOS33 [get_ports RsTx]
