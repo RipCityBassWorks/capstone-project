@@ -14,7 +14,7 @@
 -- 100Hz refresh rate
 -- A digit is refreshed every 2.5ms
 --
--- Componen of char_decoder.vhd
+-- Component of char_decoder.vhd
 ----------------------------------------------------------------------------------
 
 
