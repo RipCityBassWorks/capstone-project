@@ -17,7 +17,7 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 entity btn_debounce is
     port(
-        clock       : in    std_logic;
+        clk         : in    std_logic;
         reset       : in    std_logic;
         pb_in       : in    std_logic;
         pb_out      : out   std_logic
@@ -46,7 +46,7 @@ begin
     --2 dflipflops are used to debounce and synchronize the signal
 	DFLIPFLOP_1		: dflipflop		
 	   port map(
-	       clk         => clock, 
+	       clk         => clk, 
 	       reset       => reset, 
 	       D           => pb_in, 
 	       Q           => Q, 
@@ -55,7 +55,7 @@ begin
 	
 	DFLIPFLOP_2		: dflipflop		
           port map(
-              clk         => clock, 
+              clk         => clk, 
               reset       => reset, 
               D           => Q, 
               Q           => pb_out, 
