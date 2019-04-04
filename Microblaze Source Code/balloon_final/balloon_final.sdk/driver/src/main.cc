@@ -34,7 +34,9 @@ XGpio MEM_B;
 /*Function Decleration*/
 int main(void);
 void DemoInitialize();
-void SD(int32_t rando, int addr, int bit, int pc);
+void SD0(int32_t rando, int addr, int bit, int pc, DXSPISDVOL disk);
+void SD1(int32_t rando, int addr, int bit, int pc);
+void SD2(int32_t rando, int addr, int bit, int pc);
 void LFSR_runtime();
 void MEM_SCANNER();
 int HW();
@@ -62,7 +64,10 @@ u8 buff[12], *buffptr;
 
 DXSPISDVOL disk0(XPAR_PMODSD_0_AXI_LITE_SPI_BASEADDR,
 			         XPAR_PMODSD_0_AXI_LITE_SDCS_BASEADDR);
-
+DXSPISDVOL disk1(XPAR_PMODSD_1_AXI_LITE_SPI_BASEADDR,
+			         XPAR_PMODSD_1_AXI_LITE_SDCS_BASEADDR);
+DXSPISDVOL disk2(XPAR_PMODSD_2_AXI_LITE_SPI_BASEADDR,
+			         XPAR_PMODSD_2_AXI_LITE_SDCS_BASEADDR);
 
 /********************/
 /*Function Definintions*/
@@ -87,9 +92,9 @@ int main(void) {
 
 int32_t printprep(int32_t data){
 	//A process to print the lfsr data, memory address and bit status
-	SD(data, addr, bit_status, print_count);
-	//SD(data, addr, bit_status, print_count, disk0);
-	//SD(data, addr, bit_status, print_count, disk0);
+	SD0(data, addr, bit_status, print_count, disk0);
+
+
 
 	return 0;
 }
@@ -235,12 +240,12 @@ int HW(){
 				addr = addr + 1;
 	}
 }
-void SD(int32_t rando, int addr, int bit, int pc) {
+void SD0(int32_t rando, int addr, int bit, int pc, DXSPISDVOL disk) {
 
-		DXSPISDVOL disk = disk0;
+
 		DFILE file;
 		DFILE file2;
-			int eof;
+
 			char printline[128];
 			sprintf(printline, "\nLFSR: %d ADDR: %d", rando, addr);
 			int str_size = strlen(printline);
@@ -249,16 +254,15 @@ void SD(int32_t rando, int addr, int bit, int pc) {
 			static const char szDriveNbr[] = "0:";
 			str_track = str_track + str_size;
 			bytesWritten = bytesWritten + str_size;
-			int bites = str_size;
-			u32 bitbit;
+
 			u8 buff[4], *buffptr;
 			// Mount the disk
 			DFATFS::fsmount(disk, szDriveNbr, 1);
 
 			xil_printf("Disk mounted\r\n");
+			/*
 			//check if we need to poll the pointer
 			//not sure if this is working properly
-			/*
 			if(first_run == true) {
 				fr = file2.fsopen("pointer.txt", FA_READ);
 				if (fr == FR_OK) {
@@ -282,8 +286,8 @@ void SD(int32_t rando, int addr, int bit, int pc) {
 				      xil_printf("Failed to open file to read from\r\n");
 				   }
 				first_run = false;
-			}
-			*///commented for stability 
+			}*/
+
 			fr = file.fsopen("output.txt", FA_WRITE | FA_OPEN_ALWAYS);
 
 			if (fr == FR_OK) {
@@ -305,8 +309,51 @@ void SD(int32_t rando, int addr, int bit, int pc) {
 						} else {
 							xil_printf("Failed to open file to write to\r\n");
 							}
+			DFATFS::fsmount(disk2, szDriveNbr, 1);
+			fr = file.fsopen("output.txt", FA_WRITE | FA_OPEN_ALWAYS);
 
+						if (fr == FR_OK) {
+							file.fslseek(str_track);
+							file.fswrite(printline, str_size, &bytesWritten);
+							file.flush();
+							fr = file.fsclose();
+
+						} else {
+							xil_printf("Failed to open file to write to\r\n");
+							}
+			fr = file2.fsopen("pointer.txt", FA_WRITE | FA_OPEN_ALWAYS);
+
+						if (fr == FR_OK) {
+							file2.fswrite(printline, str_size, &bytesWritten);
+							file2.flush();
+							fr = file2.fsclose();
+
+						} else {
+							xil_printf("Failed to open file to write to\r\n");
+							}
+			DFATFS::fsmount(disk1, szDriveNbr, 1);
+			fr = file.fsopen("output.txt", FA_WRITE | FA_OPEN_ALWAYS);
+
+						if (fr == FR_OK) {
+							file.fslseek(str_track);
+							file.fswrite(printline, str_size, &bytesWritten);
+							file.flush();
+							fr = file.fsclose();
+
+						} else {
+							xil_printf("Failed to open file to write to\r\n");
+						}
+			fr = file2.fsopen("pointer.txt", FA_WRITE | FA_OPEN_ALWAYS);
+
+						if (fr == FR_OK) {
+							file2.fswrite(printline, str_size, &bytesWritten);
+							file2.flush();
+							fr = file2.fsclose();
+						} else {
+							xil_printf("Failed to open file to write to\r\n");
+						}
 }
+
 void timer_short(){
 	int time = 0;
 	while(time < TIME){
