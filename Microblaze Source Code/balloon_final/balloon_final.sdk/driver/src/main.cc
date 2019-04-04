@@ -49,7 +49,7 @@ int bit_status;
 int hw_init= 0; //hw initialization flag, when set system shouldn't run the initializitaion protocol more than once
 int print_count; //for debugging printer
 int lfsr_init = 0;
-
+bool first_run = true;
 int integer = 0;
 u32 str_track = 0;
 int32_t input;
@@ -239,6 +239,7 @@ void SD(int32_t rando, int addr, int bit, int pc) {
 
 		DXSPISDVOL disk = disk0;
 		DFILE file;
+		DFILE file2;
 			int eof;
 			char printline[128];
 			sprintf(printline, "\nLFSR: %d ADDR: %d", rando, addr);
@@ -250,10 +251,37 @@ void SD(int32_t rando, int addr, int bit, int pc) {
 			bytesWritten = bytesWritten + str_size;
 			int bites = str_size;
 			u32 bitbit;
+			u8 buff[4], *buffptr;
 			// Mount the disk
 			DFATFS::fsmount(disk, szDriveNbr, 1);
 
 			xil_printf("Disk mounted\r\n");
+			//check if we need to poll the pointer
+			//not sure if this is working properly
+			if(first_run == true) {
+				fr = file2.fsopen("pointer.txt", FA_READ);
+				if (fr == FR_OK) {
+				      buffptr = buff;
+				      totalBytesRead = 0;
+				      do {
+				         fr = file2.fsread(buffptr, 1, &bytesRead);
+				         buffptr++;
+				         totalBytesRead += bytesRead;
+				      } while (totalBytesRead < 4 && fr == FR_OK);
+
+				      if (fr == FR_OK) {
+				         xil_printf("Read successful:");
+				         buff[totalBytesRead] = 0;
+				         str_track = int(buff);
+				         xil_printf("'%s'\r\n", buff);
+				      } else {
+				         xil_printf("Read failed\r\n");
+				      }
+				   } else {
+				      xil_printf("Failed to open file to read from\r\n");
+				   }
+				first_run = false;
+			}
 
 			fr = file.fsopen("output.txt", FA_WRITE | FA_OPEN_ALWAYS);
 
@@ -266,6 +294,16 @@ void SD(int32_t rando, int addr, int bit, int pc) {
 			} else {
 				xil_printf("Failed to open file to write to\r\n");
 				}
+			fr = file2.fsopen("pointer.txt", FA_WRITE | FA_OPEN_ALWAYS);
+
+						if (fr == FR_OK) {
+							file2.fswrite(printline, str_size, &bytesWritten);
+							file2.flush();
+							fr = file2.fsclose();
+
+						} else {
+							xil_printf("Failed to open file to write to\r\n");
+							}
 
 }
 void timer_short(){
