@@ -1,0 +1,113 @@
+11:10:49 **** Clean-only build of configuration Debug for project driver ****
+make clean 
+rm -rf  ./src/main.d  ./src/main.o  driver.elf.size  driver.elf
+' '
+11:10:49 **** Clean-only build of project driver_bsp ****
+make -k clean 
+make -C microblaze_0/libsrc/bram_v4_2/src -s clean 
+make -C microblaze_0/libsrc/cpu_v2_8/src -s clean 
+make -C microblaze_0/libsrc/gpio_v4_3/src -s clean 
+make -C microblaze_0/libsrc/PmodSD_v1_0/src -s clean 
+rm: cannot lstat `*.o': Invalid argument
+make[1]: *** [Makefile:29: clean] Error 1
+make: *** [Makefile:33: microblaze_0/libsrc/PmodSD_v1_0/src/make.clean] Error 2
+make -C microblaze_0/libsrc/standalone_v6_8/src -s clean 
+make: Target 'clean' not remade because of errors.
+11:10:50 **** Build of project driver_bsp ****
+make -k all 
+"Running Make include in microblaze_0/libsrc/bram_v4_2/src"
+make -C microblaze_0/libsrc/bram_v4_2/src -s include  "SHELL=CMD" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+"Running Make include in microblaze_0/libsrc/cpu_v2_8/src"
+make -C microblaze_0/libsrc/cpu_v2_8/src -s include  "SHELL=CMD" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+"Running Make include in microblaze_0/libsrc/gpio_v4_3/src"
+make -C microblaze_0/libsrc/gpio_v4_3/src -s include  "SHELL=CMD" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+"Running Make include in microblaze_0/libsrc/PmodSD_v1_0/src"
+make -C microblaze_0/libsrc/PmodSD_v1_0/src -s include  "SHELL=CMD" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+"Running Make include in microblaze_0/libsrc/standalone_v6_8/src"
+make -C microblaze_0/libsrc/standalone_v6_8/src -s include  "SHELL=CMD" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+"Running Make libs in microblaze_0/libsrc/bram_v4_2/src"
+make -C microblaze_0/libsrc/bram_v4_2/src -s libs  "SHELL=CMD" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+"Compiling bram"
+"Running Make libs in microblaze_0/libsrc/cpu_v2_8/src"
+make -C microblaze_0/libsrc/cpu_v2_8/src -s libs  "SHELL=CMD" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+"Compiling cpu"
+"Running Make libs in microblaze_0/libsrc/gpio_v4_3/src"
+make -C microblaze_0/libsrc/gpio_v4_3/src -s libs  "SHELL=CMD" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+"Compiling gpio"
+"Running Make libs in microblaze_0/libsrc/PmodSD_v1_0/src"
+make -C microblaze_0/libsrc/PmodSD_v1_0/src -s libs  "SHELL=CMD" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+"Compiling PmodSD..."
+utility/fs_ff.c: In function 'ff_convert':
+utility/fs_ff.c:557:35: warning: unused parameter 'dir' [-Wunused-parameter]
+ WCHAR ff_convert (WCHAR wch, UINT dir)
+                                   ^~~
+"Running Make libs in microblaze_0/libsrc/standalone_v6_8/src"
+make -C microblaze_0/libsrc/standalone_v6_8/src -s libs  "SHELL=CMD" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+"Compiling standalone";
+inbyte.c: In function 'inbyte':
+inbyte.c:11:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+outbyte.c: In function 'outbyte':
+outbyte.c:11:19: warning: unused parameter 'c' [-Wunused-parameter]
+ void outbyte(char c) {
+                   ^
+microblaze_sleep.c:77:9: note: #pragma message: For the sleep routines, assembly instructions are used
+ #pragma message ("For the sleep routines, assembly instructions are used")
+         ^~~~~~~
+'Finished building libraries'
+11:10:55 **** Build of configuration Debug for project driver ****
+make all 
+'Building file: ../src/main.cc'
+'Invoking: MicroBlaze g++ compiler'
+mb-g++ -Wall -Os -g3 -c -fmessage-length=0 -MT"src/main.o" -I../../driver_bsp/microblaze_0/include -mlittle-endian -mcpu=v11.0 -mxl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.cc"
+../src/main.cc: In function 'void MEM_SCANNER()':
+../src/main.cc:125:6: warning: variable 'loc_ad' set but not used [-Wunused-but-set-variable]
+  int loc_ad;
+      ^~~~~~
+../src/main.cc:126:6: warning: variable 'pull' set but not used [-Wunused-but-set-variable]
+  u32 pull = DATA_GOOD;
+      ^~~~
+../src/main.cc: In function 'int HW()':
+../src/main.cc:190:6: warning: variable 'ad' set but not used [-Wunused-but-set-variable]
+  int ad = 0;
+      ^~
+../src/main.cc:191:11: warning: unused variable 'good' [-Wunused-variable]
+  uint32_t good = DATA_GOOD;
+           ^~~~
+../src/main.cc:193:11: warning: variable 'str' set but not used [-Wunused-but-set-variable]
+  uint32_t str;
+           ^~~
+../src/main.cc: In function 'void SD(int32_t, int, int, int)':
+../src/main.cc:244:57: warning: format '%d' expects argument of type 'int', but argument 3 has type 'int32_t {aka long int}' [-Wformat=]
+    sprintf(printline, "\nLFSR: %d ADDR: %d", rando, addr);
+                                                         ^
+../src/main.cc:242:8: warning: unused variable 'eof' [-Wunused-variable]
+    int eof;
+        ^~~
+../src/main.cc:251:8: warning: unused variable 'bites' [-Wunused-variable]
+    int bites = str_size;
+        ^~~~~
+../src/main.cc:252:8: warning: unused variable 'bitbit' [-Wunused-variable]
+    u32 bitbit;
+        ^~~~~~
+../src/main.cc: In function 'int HW()':
+../src/main.cc:237:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+'Finished building: ../src/main.cc'
+' '
+'Building target: driver.elf'
+'Invoking: MicroBlaze g++ linker'
+mb-g++ -Wl,-T -Wl,../src/lscript.ld -L../../driver_bsp/microblaze_0/lib -mlittle-endian -mcpu=v11.0 -mxl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "driver.elf"  ./src/main.o   -Wl,--start-group,-lxil,-lgcc,-lc,-lstdc++,--end-group
+'Finished building target: driver.elf'
+' '
+'Invoking: MicroBlaze Print Size'
+mb-size driver.elf  |tee "driver.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+ 112392	   1520	   2976	 116888	  1c898	driver.elf
+'Finished building: driver.elf.size'
+' '
+11:27:35 **** Incremental Build of configuration Debug for project driver ****
+make all 
+make: Nothing to be done for 'all'.

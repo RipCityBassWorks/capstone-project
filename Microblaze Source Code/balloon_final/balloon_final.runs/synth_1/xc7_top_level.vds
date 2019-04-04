@@ -1,0 +1,993 @@
+#-----------------------------------------------------------
+# Vivado v2018.3 (64-bit)
+# SW Build 2405991 on Thu Dec  6 23:38:27 MST 2018
+# IP Build 2404404 on Fri Dec  7 01:43:56 MST 2018
+# Start of session at: Thu Apr  4 09:17:32 2019
+# Process ID: 11028
+# Current directory: D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.runs/synth_1
+# Command line: vivado.exe -log xc7_top_level.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source xc7_top_level.tcl
+# Log file: D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.runs/synth_1/xc7_top_level.vds
+# Journal file: D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.runs/synth_1\vivado.jou
+#-----------------------------------------------------------
+source xc7_top_level.tcl -notrace
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository 'd:/vivado-library-master'.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2018.3/data/ip'.
+Command: synth_design -top xc7_top_level -part xc7a35tcpg236-1
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7a35t'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a35t'
+INFO: Launching helper process for spawning children vivado processes
+INFO: Helper process launched with PID 12876 
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 439.609 ; gain = 107.430
+---------------------------------------------------------------------------------
+INFO: [Synth 8-638] synthesizing module 'xc7_top_level' [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/imports/lfsr_mem_to_ublaze/lfsr_mem_to_ublaze.srcs/sources_1/imports/capstone-project/xc7_top_level.vhd:68]
+INFO: [Synth 8-3491] module 'microblaze_wrapper' declared at 'D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/hdl/microblaze_wrapper.vhd:14' bound to instance 'MICROBLAZE' of component 'microblaze_wrapper' [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/imports/lfsr_mem_to_ublaze/lfsr_mem_to_ublaze.srcs/sources_1/imports/capstone-project/xc7_top_level.vhd:329]
+INFO: [Synth 8-638] synthesizing module 'microblaze_wrapper' [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/hdl/microblaze_wrapper.vhd:51]
+INFO: [Synth 8-3491] module 'IOBUF' declared at 'C:/Xilinx/Vivado/2018.3/scripts/rt/data/unisim_comp.v:23615' bound to instance 'ja_pin10_iobuf' of component 'IOBUF' [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/hdl/microblaze_wrapper.vhd:217]
+INFO: [Synth 8-6157] synthesizing module 'IOBUF' [C:/Xilinx/Vivado/2018.3/scripts/rt/data/unisim_comp.v:23615]
+	Parameter DRIVE bound to: 12 - type: integer 
+	Parameter IBUF_LOW_PWR bound to: TRUE - type: string 
+	Parameter IOSTANDARD bound to: DEFAULT - type: string 
+	Parameter SLEW bound to: SLOW - type: string 
+INFO: [Synth 8-6155] done synthesizing module 'IOBUF' (1#1) [C:/Xilinx/Vivado/2018.3/scripts/rt/data/unisim_comp.v:23615]
+INFO: [Synth 8-3491] module 'IOBUF' declared at 'C:/Xilinx/Vivado/2018.3/scripts/rt/data/unisim_comp.v:23615' bound to instance 'ja_pin1_iobuf' of component 'IOBUF' [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/hdl/microblaze_wrapper.vhd:224]
+INFO: [Synth 8-3491] module 'IOBUF' declared at 'C:/Xilinx/Vivado/2018.3/scripts/rt/data/unisim_comp.v:23615' bound to instance 'ja_pin2_iobuf' of component 'IOBUF' [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/hdl/microblaze_wrapper.vhd:231]
+INFO: [Synth 8-3491] module 'IOBUF' declared at 'C:/Xilinx/Vivado/2018.3/scripts/rt/data/unisim_comp.v:23615' bound to instance 'ja_pin3_iobuf' of component 'IOBUF' [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/hdl/microblaze_wrapper.vhd:238]
+INFO: [Synth 8-3491] module 'IOBUF' declared at 'C:/Xilinx/Vivado/2018.3/scripts/rt/data/unisim_comp.v:23615' bound to instance 'ja_pin4_iobuf' of component 'IOBUF' [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/hdl/microblaze_wrapper.vhd:245]
+INFO: [Synth 8-3491] module 'IOBUF' declared at 'C:/Xilinx/Vivado/2018.3/scripts/rt/data/unisim_comp.v:23615' bound to instance 'ja_pin7_iobuf' of component 'IOBUF' [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/hdl/microblaze_wrapper.vhd:252]
+INFO: [Synth 8-3491] module 'IOBUF' declared at 'C:/Xilinx/Vivado/2018.3/scripts/rt/data/unisim_comp.v:23615' bound to instance 'ja_pin8_iobuf' of component 'IOBUF' [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/hdl/microblaze_wrapper.vhd:259]
+INFO: [Synth 8-3491] module 'IOBUF' declared at 'C:/Xilinx/Vivado/2018.3/scripts/rt/data/unisim_comp.v:23615' bound to instance 'ja_pin9_iobuf' of component 'IOBUF' [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/hdl/microblaze_wrapper.vhd:266]
+INFO: [Synth 8-3491] module 'IOBUF' declared at 'C:/Xilinx/Vivado/2018.3/scripts/rt/data/unisim_comp.v:23615' bound to instance 'jb_pin10_iobuf' of component 'IOBUF' [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/hdl/microblaze_wrapper.vhd:273]
+INFO: [Synth 8-3491] module 'IOBUF' declared at 'C:/Xilinx/Vivado/2018.3/scripts/rt/data/unisim_comp.v:23615' bound to instance 'jb_pin1_iobuf' of component 'IOBUF' [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/hdl/microblaze_wrapper.vhd:280]
+INFO: [Synth 8-3491] module 'IOBUF' declared at 'C:/Xilinx/Vivado/2018.3/scripts/rt/data/unisim_comp.v:23615' bound to instance 'jb_pin2_iobuf' of component 'IOBUF' [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/hdl/microblaze_wrapper.vhd:287]
+INFO: [Synth 8-3491] module 'IOBUF' declared at 'C:/Xilinx/Vivado/2018.3/scripts/rt/data/unisim_comp.v:23615' bound to instance 'jb_pin3_iobuf' of component 'IOBUF' [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/hdl/microblaze_wrapper.vhd:294]
+INFO: [Synth 8-3491] module 'IOBUF' declared at 'C:/Xilinx/Vivado/2018.3/scripts/rt/data/unisim_comp.v:23615' bound to instance 'jb_pin4_iobuf' of component 'IOBUF' [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/hdl/microblaze_wrapper.vhd:301]
+INFO: [Synth 8-3491] module 'IOBUF' declared at 'C:/Xilinx/Vivado/2018.3/scripts/rt/data/unisim_comp.v:23615' bound to instance 'jb_pin7_iobuf' of component 'IOBUF' [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/hdl/microblaze_wrapper.vhd:308]
+INFO: [Synth 8-3491] module 'IOBUF' declared at 'C:/Xilinx/Vivado/2018.3/scripts/rt/data/unisim_comp.v:23615' bound to instance 'jb_pin8_iobuf' of component 'IOBUF' [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/hdl/microblaze_wrapper.vhd:315]
+INFO: [Synth 8-3491] module 'IOBUF' declared at 'C:/Xilinx/Vivado/2018.3/scripts/rt/data/unisim_comp.v:23615' bound to instance 'jb_pin9_iobuf' of component 'IOBUF' [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/hdl/microblaze_wrapper.vhd:322]
+INFO: [Synth 8-3491] module 'IOBUF' declared at 'C:/Xilinx/Vivado/2018.3/scripts/rt/data/unisim_comp.v:23615' bound to instance 'jc_pin10_iobuf' of component 'IOBUF' [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/hdl/microblaze_wrapper.vhd:329]
+INFO: [Synth 8-3491] module 'IOBUF' declared at 'C:/Xilinx/Vivado/2018.3/scripts/rt/data/unisim_comp.v:23615' bound to instance 'jc_pin1_iobuf' of component 'IOBUF' [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/hdl/microblaze_wrapper.vhd:336]
+INFO: [Synth 8-3491] module 'IOBUF' declared at 'C:/Xilinx/Vivado/2018.3/scripts/rt/data/unisim_comp.v:23615' bound to instance 'jc_pin2_iobuf' of component 'IOBUF' [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/hdl/microblaze_wrapper.vhd:343]
+INFO: [Synth 8-3491] module 'IOBUF' declared at 'C:/Xilinx/Vivado/2018.3/scripts/rt/data/unisim_comp.v:23615' bound to instance 'jc_pin3_iobuf' of component 'IOBUF' [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/hdl/microblaze_wrapper.vhd:350]
+INFO: [Synth 8-3491] module 'IOBUF' declared at 'C:/Xilinx/Vivado/2018.3/scripts/rt/data/unisim_comp.v:23615' bound to instance 'jc_pin4_iobuf' of component 'IOBUF' [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/hdl/microblaze_wrapper.vhd:357]
+INFO: [Synth 8-3491] module 'IOBUF' declared at 'C:/Xilinx/Vivado/2018.3/scripts/rt/data/unisim_comp.v:23615' bound to instance 'jc_pin7_iobuf' of component 'IOBUF' [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/hdl/microblaze_wrapper.vhd:364]
+INFO: [Synth 8-3491] module 'IOBUF' declared at 'C:/Xilinx/Vivado/2018.3/scripts/rt/data/unisim_comp.v:23615' bound to instance 'jc_pin8_iobuf' of component 'IOBUF' [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/hdl/microblaze_wrapper.vhd:371]
+INFO: [Synth 8-3491] module 'IOBUF' declared at 'C:/Xilinx/Vivado/2018.3/scripts/rt/data/unisim_comp.v:23615' bound to instance 'jc_pin9_iobuf' of component 'IOBUF' [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/hdl/microblaze_wrapper.vhd:378]
+INFO: [Synth 8-3491] module 'microblaze' declared at 'D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/synth/microblaze.vhd:2957' bound to instance 'microblaze_i' of component 'microblaze' [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/hdl/microblaze_wrapper.vhd:385]
+INFO: [Synth 8-638] synthesizing module 'microblaze' [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/synth/microblaze.vhd:3046]
+INFO: [Synth 8-3491] module 'microblaze_PmodSD_0_1' declared at 'D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.runs/synth_1/.Xil/Vivado-11028-Galentine/realtime/microblaze_PmodSD_0_1_stub.vhdl:5' bound to instance 'PmodSD_0' of component 'microblaze_PmodSD_0_1' [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/synth/microblaze.vhd:3864]
+INFO: [Synth 8-638] synthesizing module 'microblaze_PmodSD_0_1' [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.runs/synth_1/.Xil/Vivado-11028-Galentine/realtime/microblaze_PmodSD_0_1_stub.vhdl:71]
+INFO: [Synth 8-3491] module 'microblaze_PmodSD_1_1' declared at 'D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.runs/synth_1/.Xil/Vivado-11028-Galentine/realtime/microblaze_PmodSD_1_1_stub.vhdl:5' bound to instance 'PmodSD_1' of component 'microblaze_PmodSD_1_1' [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/synth/microblaze.vhd:3927]
+INFO: [Synth 8-638] synthesizing module 'microblaze_PmodSD_1_1' [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.runs/synth_1/.Xil/Vivado-11028-Galentine/realtime/microblaze_PmodSD_1_1_stub.vhdl:71]
+INFO: [Synth 8-3491] module 'microblaze_PmodSD_2_1' declared at 'D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.runs/synth_1/.Xil/Vivado-11028-Galentine/realtime/microblaze_PmodSD_2_1_stub.vhdl:5' bound to instance 'PmodSD_2' of component 'microblaze_PmodSD_2_1' [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/synth/microblaze.vhd:3990]
+INFO: [Synth 8-638] synthesizing module 'microblaze_PmodSD_2_1' [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.runs/synth_1/.Xil/Vivado-11028-Galentine/realtime/microblaze_PmodSD_2_1_stub.vhdl:71]
+INFO: [Synth 8-3491] module 'microblaze_clk_wiz_1_0' declared at 'D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.runs/synth_1/.Xil/Vivado-11028-Galentine/realtime/microblaze_clk_wiz_1_0_stub.vhdl:5' bound to instance 'clk_wiz_1' of component 'microblaze_clk_wiz_1_0' [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/synth/microblaze.vhd:4053]
+INFO: [Synth 8-638] synthesizing module 'microblaze_clk_wiz_1_0' [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.runs/synth_1/.Xil/Vivado-11028-Galentine/realtime/microblaze_clk_wiz_1_0_stub.vhdl:15]
+INFO: [Synth 8-3491] module 'microblaze_axi_gpio_0_0' declared at 'D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.runs/synth_1/.Xil/Vivado-11028-Galentine/realtime/microblaze_axi_gpio_0_0_stub.vhdl:5' bound to instance 'lfsr_iface' of component 'microblaze_axi_gpio_0_0' [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/synth/microblaze.vhd:4060]
+INFO: [Synth 8-638] synthesizing module 'microblaze_axi_gpio_0_0' [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.runs/synth_1/.Xil/Vivado-11028-Galentine/realtime/microblaze_axi_gpio_0_0_stub.vhdl:32]
+INFO: [Synth 8-3491] module 'microblaze_mdm_1_0' declared at 'D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.runs/synth_1/.Xil/Vivado-11028-Galentine/realtime/microblaze_mdm_1_0_stub.vhdl:5' bound to instance 'mdm_1' of component 'microblaze_mdm_1_0' [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/synth/microblaze.vhd:4084]
+INFO: [Synth 8-638] synthesizing module 'microblaze_mdm_1_0' [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.runs/synth_1/.Xil/Vivado-11028-Galentine/realtime/microblaze_mdm_1_0_stub.vhdl:21]
+INFO: [Synth 8-3491] module 'microblaze_mem_iface_0' declared at 'D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.runs/synth_1/.Xil/Vivado-11028-Galentine/realtime/microblaze_mem_iface_0_stub.vhdl:5' bound to instance 'mem_addr' of component 'microblaze_mem_iface_0' [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/synth/microblaze.vhd:4097]
+INFO: [Synth 8-638] synthesizing module 'microblaze_mem_iface_0' [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.runs/synth_1/.Xil/Vivado-11028-Galentine/realtime/microblaze_mem_iface_0_stub.vhdl:32]
+INFO: [Synth 8-3491] module 'microblaze_axi_gpio_0_1' declared at 'D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.runs/synth_1/.Xil/Vivado-11028-Galentine/realtime/microblaze_axi_gpio_0_1_stub.vhdl:5' bound to instance 'mem_data' of component 'microblaze_axi_gpio_0_1' [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/synth/microblaze.vhd:4121]
+INFO: [Synth 8-638] synthesizing module 'microblaze_axi_gpio_0_1' [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.runs/synth_1/.Xil/Vivado-11028-Galentine/realtime/microblaze_axi_gpio_0_1_stub.vhdl:32]
+INFO: [Synth 8-3491] module 'microblaze_microblaze_0_1' declared at 'D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.runs/synth_1/.Xil/Vivado-11028-Galentine/realtime/microblaze_microblaze_0_1_stub.vhdl:5' bound to instance 'microblaze_0' of component 'microblaze_microblaze_0_1' [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/synth/microblaze.vhd:4145]
+INFO: [Synth 8-638] synthesizing module 'microblaze_microblaze_0_1' [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.runs/synth_1/.Xil/Vivado-11028-Galentine/realtime/microblaze_microblaze_0_1_stub.vhdl:63]
+INFO: [Synth 8-638] synthesizing module 'microblaze_microblaze_0_axi_periph_0' [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/synth/microblaze.vhd:1791]
+INFO: [Synth 8-638] synthesizing module 'm00_couplers_imp_2SZHJX' [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/synth/microblaze.vhd:57]
+INFO: [Synth 8-256] done synthesizing module 'm00_couplers_imp_2SZHJX' (2#1) [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/synth/microblaze.vhd:57]
+INFO: [Synth 8-638] synthesizing module 'm01_couplers_imp_UXJV17' [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/synth/microblaze.vhd:158]
+INFO: [Synth 8-256] done synthesizing module 'm01_couplers_imp_UXJV17' (3#1) [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/synth/microblaze.vhd:158]
+INFO: [Synth 8-638] synthesizing module 'm02_couplers_imp_1HI1GR5' [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/synth/microblaze.vhd:259]
+INFO: [Synth 8-256] done synthesizing module 'm02_couplers_imp_1HI1GR5' (4#1) [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/synth/microblaze.vhd:259]
+INFO: [Synth 8-638] synthesizing module 'm03_couplers_imp_19Z7TXZ' [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/synth/microblaze.vhd:360]
+INFO: [Synth 8-256] done synthesizing module 'm03_couplers_imp_19Z7TXZ' (5#1) [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/synth/microblaze.vhd:360]
+INFO: [Synth 8-638] synthesizing module 'm04_couplers_imp_J4O1C4' [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/synth/microblaze.vhd:461]
+INFO: [Synth 8-256] done synthesizing module 'm04_couplers_imp_J4O1C4' (6#1) [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/synth/microblaze.vhd:461]
+INFO: [Synth 8-638] synthesizing module 'm05_couplers_imp_9BINPE' [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/synth/microblaze.vhd:562]
+INFO: [Synth 8-256] done synthesizing module 'm05_couplers_imp_9BINPE' (7#1) [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/synth/microblaze.vhd:562]
+INFO: [Synth 8-638] synthesizing module 'm06_couplers_imp_13GVUX4' [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/synth/microblaze.vhd:663]
+INFO: [Synth 8-256] done synthesizing module 'm06_couplers_imp_13GVUX4' (8#1) [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/synth/microblaze.vhd:663]
+INFO: [Synth 8-638] synthesizing module 'm07_couplers_imp_1TASWEM' [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/synth/microblaze.vhd:764]
+INFO: [Synth 8-256] done synthesizing module 'm07_couplers_imp_1TASWEM' (9#1) [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/synth/microblaze.vhd:764]
+INFO: [Synth 8-638] synthesizing module 'm08_couplers_imp_1643JFZ' [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/synth/microblaze.vhd:865]
+INFO: [Synth 8-256] done synthesizing module 'm08_couplers_imp_1643JFZ' (10#1) [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/synth/microblaze.vhd:865]
+INFO: [Synth 8-638] synthesizing module 's00_couplers_imp_SYAVRW' [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/synth/microblaze.vhd:1528]
+INFO: [Synth 8-256] done synthesizing module 's00_couplers_imp_SYAVRW' (11#1) [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/synth/microblaze.vhd:1528]
+INFO: [Synth 8-3491] module 'microblaze_xbar_0' declared at 'D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.runs/synth_1/.Xil/Vivado-11028-Galentine/realtime/microblaze_xbar_0_stub.vhdl:5' bound to instance 'xbar' of component 'microblaze_xbar_0' [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/synth/microblaze.vhd:2773]
+INFO: [Synth 8-638] synthesizing module 'microblaze_xbar_0' [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.runs/synth_1/.Xil/Vivado-11028-Galentine/realtime/microblaze_xbar_0_stub.vhdl:51]
+INFO: [Synth 8-256] done synthesizing module 'microblaze_microblaze_0_axi_periph_0' (12#1) [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/synth/microblaze.vhd:1791]
+INFO: [Synth 8-638] synthesizing module 'microblaze_0_local_memory_imp_HPR3PZ' [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/synth/microblaze.vhd:949]
+INFO: [Synth 8-3491] module 'microblaze_dlmb_bram_if_cntlr_1' declared at 'D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.runs/synth_1/.Xil/Vivado-11028-Galentine/realtime/microblaze_dlmb_bram_if_cntlr_1_stub.vhdl:5' bound to instance 'dlmb_bram_if_cntlr' of component 'microblaze_dlmb_bram_if_cntlr_1' [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/synth/microblaze.vhd:1163]
+INFO: [Synth 8-638] synthesizing module 'microblaze_dlmb_bram_if_cntlr_1' [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.runs/synth_1/.Xil/Vivado-11028-Galentine/realtime/microblaze_dlmb_bram_if_cntlr_1_stub.vhdl:31]
+INFO: [Synth 8-3491] module 'microblaze_dlmb_v10_1' declared at 'D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.runs/synth_1/.Xil/Vivado-11028-Galentine/realtime/microblaze_dlmb_v10_1_stub.vhdl:5' bound to instance 'dlmb_v10' of component 'microblaze_dlmb_v10_1' [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/synth/microblaze.vhd:1217]
+INFO: [Synth 8-638] synthesizing module 'microblaze_dlmb_v10_1' [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.runs/synth_1/.Xil/Vivado-11028-Galentine/realtime/microblaze_dlmb_v10_1_stub.vhdl:36]
+INFO: [Synth 8-3491] module 'microblaze_ilmb_bram_if_cntlr_1' declared at 'D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.runs/synth_1/.Xil/Vivado-11028-Galentine/realtime/microblaze_ilmb_bram_if_cntlr_1_stub.vhdl:5' bound to instance 'ilmb_bram_if_cntlr' of component 'microblaze_ilmb_bram_if_cntlr_1' [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/synth/microblaze.vhd:1245]
+INFO: [Synth 8-638] synthesizing module 'microblaze_ilmb_bram_if_cntlr_1' [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.runs/synth_1/.Xil/Vivado-11028-Galentine/realtime/microblaze_ilmb_bram_if_cntlr_1_stub.vhdl:31]
+INFO: [Synth 8-3491] module 'microblaze_ilmb_v10_1' declared at 'D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.runs/synth_1/.Xil/Vivado-11028-Galentine/realtime/microblaze_ilmb_v10_1_stub.vhdl:5' bound to instance 'ilmb_v10' of component 'microblaze_ilmb_v10_1' [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/synth/microblaze.vhd:1299]
+INFO: [Synth 8-638] synthesizing module 'microblaze_ilmb_v10_1' [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.runs/synth_1/.Xil/Vivado-11028-Galentine/realtime/microblaze_ilmb_v10_1_stub.vhdl:36]
+INFO: [Synth 8-3491] module 'microblaze_lmb_bram_1' declared at 'D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.runs/synth_1/.Xil/Vivado-11028-Galentine/realtime/microblaze_lmb_bram_1_stub.vhdl:5' bound to instance 'lmb_bram' of component 'microblaze_lmb_bram_1' [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/synth/microblaze.vhd:1327]
+INFO: [Synth 8-638] synthesizing module 'microblaze_lmb_bram_1' [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.runs/synth_1/.Xil/Vivado-11028-Galentine/realtime/microblaze_lmb_bram_1_stub.vhdl:27]
+INFO: [Synth 8-256] done synthesizing module 'microblaze_0_local_memory_imp_HPR3PZ' (13#1) [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/synth/microblaze.vhd:949]
+INFO: [Synth 8-3491] module 'microblaze_rst_clk_wiz_1_100M_0' declared at 'D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.runs/synth_1/.Xil/Vivado-11028-Galentine/realtime/microblaze_rst_clk_wiz_1_100M_0_stub.vhdl:5' bound to instance 'rst_clk_wiz_1_100M' of component 'microblaze_rst_clk_wiz_1_100M_0' [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/synth/microblaze.vhd:4421]
+INFO: [Synth 8-638] synthesizing module 'microblaze_rst_clk_wiz_1_100M_0' [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.runs/synth_1/.Xil/Vivado-11028-Galentine/realtime/microblaze_rst_clk_wiz_1_100M_0_stub.vhdl:21]
+INFO: [Synth 8-256] done synthesizing module 'microblaze' (14#1) [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/synth/microblaze.vhd:3046]
+INFO: [Synth 8-256] done synthesizing module 'microblaze_wrapper' (15#1) [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/hdl/microblaze_wrapper.vhd:51]
+	Parameter data_width bound to: 32 - type: integer 
+	Parameter addr_width bound to: 2000 - type: integer 
+INFO: [Synth 8-3491] module 'ram' declared at 'D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/imports/lfsr_mem_to_ublaze/ram.vhd:4' bound to instance 'RAM1' of component 'ram' [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/imports/lfsr_mem_to_ublaze/lfsr_mem_to_ublaze.srcs/sources_1/imports/capstone-project/xc7_top_level.vhd:365]
+INFO: [Synth 8-638] synthesizing module 'ram' [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/imports/lfsr_mem_to_ublaze/ram.vhd:17]
+	Parameter data_width bound to: 32 - type: integer 
+	Parameter addr_width bound to: 2000 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'ram' (16#1) [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/imports/lfsr_mem_to_ublaze/ram.vhd:17]
+INFO: [Synth 8-3491] module 'btn_debounce' declared at 'D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/imports/capstone-project/btn_debounce.vhd:18' bound to instance 'PUSH_BUTTON_ZERO' of component 'btn_debounce' [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/imports/lfsr_mem_to_ublaze/lfsr_mem_to_ublaze.srcs/sources_1/imports/capstone-project/xc7_top_level.vhd:375]
+INFO: [Synth 8-638] synthesizing module 'btn_debounce' [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/imports/capstone-project/btn_debounce.vhd:27]
+INFO: [Synth 8-3491] module 'dflipflop' declared at 'C:/Users/poopm/OneDrive/Documents/GitHub/capstone-project/dflipflop.vhd:19' bound to instance 'DFLIPFLOP_1' of component 'dflipflop' [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/imports/capstone-project/btn_debounce.vhd:47]
+INFO: [Synth 8-638] synthesizing module 'dflipflop' [C:/Users/poopm/OneDrive/Documents/GitHub/capstone-project/dflipflop.vhd:29]
+INFO: [Synth 8-256] done synthesizing module 'dflipflop' (17#1) [C:/Users/poopm/OneDrive/Documents/GitHub/capstone-project/dflipflop.vhd:29]
+INFO: [Synth 8-3491] module 'dflipflop' declared at 'C:/Users/poopm/OneDrive/Documents/GitHub/capstone-project/dflipflop.vhd:19' bound to instance 'DFLIPFLOP_2' of component 'dflipflop' [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/imports/capstone-project/btn_debounce.vhd:56]
+INFO: [Synth 8-256] done synthesizing module 'btn_debounce' (18#1) [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/imports/capstone-project/btn_debounce.vhd:27]
+INFO: [Synth 8-3491] module 'clock_divider' declared at 'D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/imports/capstone-project/clock_divider.vhd:26' bound to instance 'DIVIDE_CLOCK' of component 'clock_divider' [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/imports/lfsr_mem_to_ublaze/lfsr_mem_to_ublaze.srcs/sources_1/imports/capstone-project/xc7_top_level.vhd:383]
+INFO: [Synth 8-638] synthesizing module 'clock_divider' [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/imports/capstone-project/clock_divider.vhd:35]
+INFO: [Synth 8-256] done synthesizing module 'clock_divider' (19#1) [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/imports/capstone-project/clock_divider.vhd:35]
+INFO: [Synth 8-3491] module 'char_decoder' declared at 'D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/imports/capstone-project/char_decoder.vhd:21' bound to instance 'SEVEN_SEGMENT_DISPLAY' of component 'char_decoder' [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/imports/lfsr_mem_to_ublaze/lfsr_mem_to_ublaze.srcs/sources_1/imports/capstone-project/xc7_top_level.vhd:391]
+INFO: [Synth 8-638] synthesizing module 'char_decoder' [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/imports/capstone-project/char_decoder.vhd:32]
+INFO: [Synth 8-3491] module 'display_counter' declared at 'D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/imports/capstone-project/display_counter.vhd:26' bound to instance 'TIMER' of component 'display_counter' [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/imports/capstone-project/char_decoder.vhd:50]
+INFO: [Synth 8-638] synthesizing module 'display_counter' [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/imports/capstone-project/display_counter.vhd:34]
+INFO: [Synth 8-256] done synthesizing module 'display_counter' (20#1) [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/imports/capstone-project/display_counter.vhd:34]
+INFO: [Synth 8-256] done synthesizing module 'char_decoder' (21#1) [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/imports/capstone-project/char_decoder.vhd:32]
+INFO: [Synth 8-3491] module 'lfsr' declared at 'D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/imports/capstone-project/lfsr.vhd:25' bound to instance 'SHIFT_REG' of component 'lfsr' [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/imports/lfsr_mem_to_ublaze/lfsr_mem_to_ublaze.srcs/sources_1/imports/capstone-project/xc7_top_level.vhd:401]
+INFO: [Synth 8-638] synthesizing module 'lfsr' [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/imports/capstone-project/lfsr.vhd:40]
+INFO: [Synth 8-256] done synthesizing module 'lfsr' (22#1) [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/imports/capstone-project/lfsr.vhd:40]
+INFO: [Synth 8-3491] module 'delay_counter' declared at 'D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/imports/capstone-project/delay_counter.vhd:20' bound to instance 'TWO_SEC_DELAY' of component 'delay_counter' [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/imports/lfsr_mem_to_ublaze/lfsr_mem_to_ublaze.srcs/sources_1/imports/capstone-project/xc7_top_level.vhd:414]
+INFO: [Synth 8-638] synthesizing module 'delay_counter' [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/imports/capstone-project/delay_counter.vhd:28]
+INFO: [Synth 8-256] done synthesizing module 'delay_counter' (23#1) [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/imports/capstone-project/delay_counter.vhd:28]
+INFO: [Synth 8-3491] module 'UART_TX_CTRL' declared at 'D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/imports/lfsr_mem_to_ublaze/lfsr_mem_to_ublaze.srcs/sources_1/imports/capstone-project/UART_TX_CTRL.vhd:42' bound to instance 'INST_UART_TX_CTRL' of component 'UART_TX_CTRL' [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/imports/lfsr_mem_to_ublaze/lfsr_mem_to_ublaze.srcs/sources_1/imports/capstone-project/xc7_top_level.vhd:437]
+INFO: [Synth 8-638] synthesizing module 'UART_TX_CTRL' [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/imports/lfsr_mem_to_ublaze/lfsr_mem_to_ublaze.srcs/sources_1/imports/capstone-project/UART_TX_CTRL.vhd:52]
+INFO: [Synth 8-256] done synthesizing module 'UART_TX_CTRL' (24#1) [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/imports/lfsr_mem_to_ublaze/lfsr_mem_to_ublaze.srcs/sources_1/imports/capstone-project/UART_TX_CTRL.vhd:52]
+INFO: [Synth 8-256] done synthesizing module 'xc7_top_level' (25#1) [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/imports/lfsr_mem_to_ublaze/lfsr_mem_to_ublaze.srcs/sources_1/imports/capstone-project/xc7_top_level.vhd:68]
+WARNING: [Synth 8-3331] design s00_couplers_imp_SYAVRW has unconnected port M_ACLK
+WARNING: [Synth 8-3331] design s00_couplers_imp_SYAVRW has unconnected port M_ARESETN
+WARNING: [Synth 8-3331] design s00_couplers_imp_SYAVRW has unconnected port S_ACLK
+WARNING: [Synth 8-3331] design s00_couplers_imp_SYAVRW has unconnected port S_ARESETN
+WARNING: [Synth 8-3331] design m08_couplers_imp_1643JFZ has unconnected port M_ACLK
+WARNING: [Synth 8-3331] design m08_couplers_imp_1643JFZ has unconnected port M_ARESETN
+WARNING: [Synth 8-3331] design m08_couplers_imp_1643JFZ has unconnected port S_ACLK
+WARNING: [Synth 8-3331] design m08_couplers_imp_1643JFZ has unconnected port S_ARESETN
+WARNING: [Synth 8-3331] design m07_couplers_imp_1TASWEM has unconnected port M_ACLK
+WARNING: [Synth 8-3331] design m07_couplers_imp_1TASWEM has unconnected port M_ARESETN
+WARNING: [Synth 8-3331] design m07_couplers_imp_1TASWEM has unconnected port S_ACLK
+WARNING: [Synth 8-3331] design m07_couplers_imp_1TASWEM has unconnected port S_ARESETN
+WARNING: [Synth 8-3331] design m06_couplers_imp_13GVUX4 has unconnected port M_ACLK
+WARNING: [Synth 8-3331] design m06_couplers_imp_13GVUX4 has unconnected port M_ARESETN
+WARNING: [Synth 8-3331] design m06_couplers_imp_13GVUX4 has unconnected port S_ACLK
+WARNING: [Synth 8-3331] design m06_couplers_imp_13GVUX4 has unconnected port S_ARESETN
+WARNING: [Synth 8-3331] design m05_couplers_imp_9BINPE has unconnected port M_ACLK
+WARNING: [Synth 8-3331] design m05_couplers_imp_9BINPE has unconnected port M_ARESETN
+WARNING: [Synth 8-3331] design m05_couplers_imp_9BINPE has unconnected port S_ACLK
+WARNING: [Synth 8-3331] design m05_couplers_imp_9BINPE has unconnected port S_ARESETN
+WARNING: [Synth 8-3331] design m04_couplers_imp_J4O1C4 has unconnected port M_ACLK
+WARNING: [Synth 8-3331] design m04_couplers_imp_J4O1C4 has unconnected port M_ARESETN
+WARNING: [Synth 8-3331] design m04_couplers_imp_J4O1C4 has unconnected port S_ACLK
+WARNING: [Synth 8-3331] design m04_couplers_imp_J4O1C4 has unconnected port S_ARESETN
+WARNING: [Synth 8-3331] design m03_couplers_imp_19Z7TXZ has unconnected port M_ACLK
+WARNING: [Synth 8-3331] design m03_couplers_imp_19Z7TXZ has unconnected port M_ARESETN
+WARNING: [Synth 8-3331] design m03_couplers_imp_19Z7TXZ has unconnected port S_ACLK
+WARNING: [Synth 8-3331] design m03_couplers_imp_19Z7TXZ has unconnected port S_ARESETN
+WARNING: [Synth 8-3331] design m02_couplers_imp_1HI1GR5 has unconnected port M_ACLK
+WARNING: [Synth 8-3331] design m02_couplers_imp_1HI1GR5 has unconnected port M_ARESETN
+WARNING: [Synth 8-3331] design m02_couplers_imp_1HI1GR5 has unconnected port S_ACLK
+WARNING: [Synth 8-3331] design m02_couplers_imp_1HI1GR5 has unconnected port S_ARESETN
+WARNING: [Synth 8-3331] design m01_couplers_imp_UXJV17 has unconnected port M_ACLK
+WARNING: [Synth 8-3331] design m01_couplers_imp_UXJV17 has unconnected port M_ARESETN
+WARNING: [Synth 8-3331] design m01_couplers_imp_UXJV17 has unconnected port S_ACLK
+WARNING: [Synth 8-3331] design m01_couplers_imp_UXJV17 has unconnected port S_ARESETN
+WARNING: [Synth 8-3331] design m00_couplers_imp_2SZHJX has unconnected port M_ACLK
+WARNING: [Synth 8-3331] design m00_couplers_imp_2SZHJX has unconnected port M_ARESETN
+WARNING: [Synth 8-3331] design m00_couplers_imp_2SZHJX has unconnected port S_ACLK
+WARNING: [Synth 8-3331] design m00_couplers_imp_2SZHJX has unconnected port S_ARESETN
+WARNING: [Synth 8-3331] design microblaze_microblaze_0_axi_periph_0 has unconnected port M00_ACLK
+WARNING: [Synth 8-3331] design microblaze_microblaze_0_axi_periph_0 has unconnected port M00_ARESETN
+WARNING: [Synth 8-3331] design microblaze_microblaze_0_axi_periph_0 has unconnected port M01_ACLK
+WARNING: [Synth 8-3331] design microblaze_microblaze_0_axi_periph_0 has unconnected port M01_ARESETN
+WARNING: [Synth 8-3331] design microblaze_microblaze_0_axi_periph_0 has unconnected port M02_ACLK
+WARNING: [Synth 8-3331] design microblaze_microblaze_0_axi_periph_0 has unconnected port M02_ARESETN
+WARNING: [Synth 8-3331] design microblaze_microblaze_0_axi_periph_0 has unconnected port M03_ACLK
+WARNING: [Synth 8-3331] design microblaze_microblaze_0_axi_periph_0 has unconnected port M03_ARESETN
+WARNING: [Synth 8-3331] design microblaze_microblaze_0_axi_periph_0 has unconnected port M04_ACLK
+WARNING: [Synth 8-3331] design microblaze_microblaze_0_axi_periph_0 has unconnected port M04_ARESETN
+WARNING: [Synth 8-3331] design microblaze_microblaze_0_axi_periph_0 has unconnected port M05_ACLK
+WARNING: [Synth 8-3331] design microblaze_microblaze_0_axi_periph_0 has unconnected port M05_ARESETN
+WARNING: [Synth 8-3331] design microblaze_microblaze_0_axi_periph_0 has unconnected port M06_ACLK
+WARNING: [Synth 8-3331] design microblaze_microblaze_0_axi_periph_0 has unconnected port M06_ARESETN
+WARNING: [Synth 8-3331] design microblaze_microblaze_0_axi_periph_0 has unconnected port M07_ACLK
+WARNING: [Synth 8-3331] design microblaze_microblaze_0_axi_periph_0 has unconnected port M07_ARESETN
+WARNING: [Synth 8-3331] design microblaze_microblaze_0_axi_periph_0 has unconnected port M08_ACLK
+WARNING: [Synth 8-3331] design microblaze_microblaze_0_axi_periph_0 has unconnected port M08_ARESETN
+WARNING: [Synth 8-3331] design microblaze_microblaze_0_axi_periph_0 has unconnected port S00_ACLK
+WARNING: [Synth 8-3331] design microblaze_microblaze_0_axi_periph_0 has unconnected port S00_ARESETN
+WARNING: [Synth 8-3331] design xc7_top_level has unconnected port ja_5
+WARNING: [Synth 8-3331] design xc7_top_level has unconnected port jb_5
+WARNING: [Synth 8-3331] design xc7_top_level has unconnected port jc_5
+WARNING: [Synth 8-3331] design xc7_top_level has unconnected port btn[4]
+WARNING: [Synth 8-3331] design xc7_top_level has unconnected port btn[3]
+WARNING: [Synth 8-3331] design xc7_top_level has unconnected port btn[2]
+WARNING: [Synth 8-3331] design xc7_top_level has unconnected port btn[1]
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:03 . Memory (MB): peak = 504.824 ; gain = 172.645
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:04 ; elapsed = 00:00:03 . Memory (MB): peak = 504.824 ; gain = 172.645
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:04 ; elapsed = 00:00:03 . Memory (MB): peak = 504.824 ; gain = 172.645
+---------------------------------------------------------------------------------
+INFO: [Netlist 29-17] Analyzing 24 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Device 21-403] Loading part xc7a35tcpg236-1
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [d:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/ip/microblaze_mdm_1_0/microblaze_mdm_1_0/microblaze_mdm_1_0_in_context.xdc] for cell 'MICROBLAZE/microblaze_i/mdm_1'
+Finished Parsing XDC File [d:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/ip/microblaze_mdm_1_0/microblaze_mdm_1_0/microblaze_mdm_1_0_in_context.xdc] for cell 'MICROBLAZE/microblaze_i/mdm_1'
+Parsing XDC File [d:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/ip/microblaze_clk_wiz_1_0/microblaze_clk_wiz_1_0/microblaze_clk_wiz_1_0_in_context.xdc] for cell 'MICROBLAZE/microblaze_i/clk_wiz_1'
+Finished Parsing XDC File [d:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/ip/microblaze_clk_wiz_1_0/microblaze_clk_wiz_1_0/microblaze_clk_wiz_1_0_in_context.xdc] for cell 'MICROBLAZE/microblaze_i/clk_wiz_1'
+Parsing XDC File [d:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/ip/microblaze_rst_clk_wiz_1_100M_0/microblaze_rst_clk_wiz_1_100M_0/microblaze_rst_clk_wiz_1_100M_0_in_context.xdc] for cell 'MICROBLAZE/microblaze_i/rst_clk_wiz_1_100M'
+Finished Parsing XDC File [d:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/ip/microblaze_rst_clk_wiz_1_100M_0/microblaze_rst_clk_wiz_1_100M_0/microblaze_rst_clk_wiz_1_100M_0_in_context.xdc] for cell 'MICROBLAZE/microblaze_i/rst_clk_wiz_1_100M'
+Parsing XDC File [d:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/ip/microblaze_axi_gpio_0_0/microblaze_axi_gpio_0_0/microblaze_axi_gpio_0_0_in_context.xdc] for cell 'MICROBLAZE/microblaze_i/lfsr_iface'
+Finished Parsing XDC File [d:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/ip/microblaze_axi_gpio_0_0/microblaze_axi_gpio_0_0/microblaze_axi_gpio_0_0_in_context.xdc] for cell 'MICROBLAZE/microblaze_i/lfsr_iface'
+Parsing XDC File [d:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/ip/microblaze_axi_gpio_0_1/microblaze_axi_gpio_0_1/microblaze_axi_gpio_0_1_in_context.xdc] for cell 'MICROBLAZE/microblaze_i/mem_data'
+Finished Parsing XDC File [d:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/ip/microblaze_axi_gpio_0_1/microblaze_axi_gpio_0_1/microblaze_axi_gpio_0_1_in_context.xdc] for cell 'MICROBLAZE/microblaze_i/mem_data'
+Parsing XDC File [d:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/ip/microblaze_xbar_0/microblaze_xbar_0/microblaze_xbar_0_in_context.xdc] for cell 'MICROBLAZE/microblaze_i/microblaze_0_axi_periph/xbar'
+Finished Parsing XDC File [d:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/ip/microblaze_xbar_0/microblaze_xbar_0/microblaze_xbar_0_in_context.xdc] for cell 'MICROBLAZE/microblaze_i/microblaze_0_axi_periph/xbar'
+Parsing XDC File [d:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/ip/microblaze_mem_iface_0/microblaze_mem_iface_0/microblaze_mem_iface_0_in_context.xdc] for cell 'MICROBLAZE/microblaze_i/mem_addr'
+Finished Parsing XDC File [d:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/ip/microblaze_mem_iface_0/microblaze_mem_iface_0/microblaze_mem_iface_0_in_context.xdc] for cell 'MICROBLAZE/microblaze_i/mem_addr'
+Parsing XDC File [d:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/ip/microblaze_PmodSD_0_1/microblaze_PmodSD_0_1/microblaze_PmodSD_0_0_in_context.xdc] for cell 'MICROBLAZE/microblaze_i/PmodSD_0'
+Finished Parsing XDC File [d:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/ip/microblaze_PmodSD_0_1/microblaze_PmodSD_0_1/microblaze_PmodSD_0_0_in_context.xdc] for cell 'MICROBLAZE/microblaze_i/PmodSD_0'
+Parsing XDC File [d:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/ip/microblaze_PmodSD_1_1/microblaze_PmodSD_1_1/microblaze_PmodSD_1_0_in_context.xdc] for cell 'MICROBLAZE/microblaze_i/PmodSD_1'
+Finished Parsing XDC File [d:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/ip/microblaze_PmodSD_1_1/microblaze_PmodSD_1_1/microblaze_PmodSD_1_0_in_context.xdc] for cell 'MICROBLAZE/microblaze_i/PmodSD_1'
+Parsing XDC File [d:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/ip/microblaze_PmodSD_2_1/microblaze_PmodSD_2_1/microblaze_PmodSD_2_0_in_context.xdc] for cell 'MICROBLAZE/microblaze_i/PmodSD_2'
+Finished Parsing XDC File [d:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/ip/microblaze_PmodSD_2_1/microblaze_PmodSD_2_1/microblaze_PmodSD_2_0_in_context.xdc] for cell 'MICROBLAZE/microblaze_i/PmodSD_2'
+Parsing XDC File [d:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/ip/microblaze_microblaze_0_1/microblaze_microblaze_0_1/microblaze_microblaze_0_0_in_context.xdc] for cell 'MICROBLAZE/microblaze_i/microblaze_0'
+Finished Parsing XDC File [d:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/ip/microblaze_microblaze_0_1/microblaze_microblaze_0_1/microblaze_microblaze_0_0_in_context.xdc] for cell 'MICROBLAZE/microblaze_i/microblaze_0'
+Parsing XDC File [d:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/ip/microblaze_dlmb_v10_1/microblaze_dlmb_v10_1/microblaze_dlmb_v10_0_in_context.xdc] for cell 'MICROBLAZE/microblaze_i/microblaze_0_local_memory/dlmb_v10'
+Finished Parsing XDC File [d:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/ip/microblaze_dlmb_v10_1/microblaze_dlmb_v10_1/microblaze_dlmb_v10_0_in_context.xdc] for cell 'MICROBLAZE/microblaze_i/microblaze_0_local_memory/dlmb_v10'
+Parsing XDC File [d:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/ip/microblaze_ilmb_v10_1/microblaze_ilmb_v10_1/microblaze_dlmb_v10_0_in_context.xdc] for cell 'MICROBLAZE/microblaze_i/microblaze_0_local_memory/ilmb_v10'
+Finished Parsing XDC File [d:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/ip/microblaze_ilmb_v10_1/microblaze_ilmb_v10_1/microblaze_dlmb_v10_0_in_context.xdc] for cell 'MICROBLAZE/microblaze_i/microblaze_0_local_memory/ilmb_v10'
+Parsing XDC File [d:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/ip/microblaze_dlmb_bram_if_cntlr_1/microblaze_dlmb_bram_if_cntlr_1/microblaze_dlmb_bram_if_cntlr_1_in_context.xdc] for cell 'MICROBLAZE/microblaze_i/microblaze_0_local_memory/dlmb_bram_if_cntlr'
+Finished Parsing XDC File [d:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/ip/microblaze_dlmb_bram_if_cntlr_1/microblaze_dlmb_bram_if_cntlr_1/microblaze_dlmb_bram_if_cntlr_1_in_context.xdc] for cell 'MICROBLAZE/microblaze_i/microblaze_0_local_memory/dlmb_bram_if_cntlr'
+Parsing XDC File [d:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/ip/microblaze_ilmb_bram_if_cntlr_1/microblaze_ilmb_bram_if_cntlr_1/microblaze_ilmb_bram_if_cntlr_1_in_context.xdc] for cell 'MICROBLAZE/microblaze_i/microblaze_0_local_memory/ilmb_bram_if_cntlr'
+Finished Parsing XDC File [d:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/ip/microblaze_ilmb_bram_if_cntlr_1/microblaze_ilmb_bram_if_cntlr_1/microblaze_ilmb_bram_if_cntlr_1_in_context.xdc] for cell 'MICROBLAZE/microblaze_i/microblaze_0_local_memory/ilmb_bram_if_cntlr'
+Parsing XDC File [d:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/ip/microblaze_lmb_bram_1/microblaze_lmb_bram_1/microblaze_lmb_bram_1_in_context.xdc] for cell 'MICROBLAZE/microblaze_i/microblaze_0_local_memory/lmb_bram'
+Finished Parsing XDC File [d:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/ip/microblaze_lmb_bram_1/microblaze_lmb_bram_1/microblaze_lmb_bram_1_in_context.xdc] for cell 'MICROBLAZE/microblaze_i/microblaze_0_local_memory/lmb_bram'
+Parsing XDC File [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/constrs_1/imports/capstone-project/Basys-3-Master.xdc]
+WARNING: [Vivado 12-584] No ports matched 'ja_3]'. [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/constrs_1/imports/capstone-project/Basys-3-Master.xdc:137]
+WARNING: [Vivado 12-584] No ports matched 'ja_10]'. [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/constrs_1/imports/capstone-project/Basys-3-Master.xdc:152]
+WARNING: [Vivado 12-584] No ports matched 'JB[0]'. [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/constrs_1/imports/capstone-project/Basys-3-Master.xdc:159]
+WARNING: [Vivado 12-584] No ports matched 'JB[0]'. [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/constrs_1/imports/capstone-project/Basys-3-Master.xdc:160]
+WARNING: [Vivado 12-584] No ports matched 'JB[1]'. [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/constrs_1/imports/capstone-project/Basys-3-Master.xdc:162]
+WARNING: [Vivado 12-584] No ports matched 'JB[1]'. [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/constrs_1/imports/capstone-project/Basys-3-Master.xdc:163]
+WARNING: [Vivado 12-584] No ports matched 'JB[2]'. [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/constrs_1/imports/capstone-project/Basys-3-Master.xdc:165]
+WARNING: [Vivado 12-584] No ports matched 'JB[2]'. [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/constrs_1/imports/capstone-project/Basys-3-Master.xdc:166]
+WARNING: [Vivado 12-584] No ports matched 'JB[3]'. [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/constrs_1/imports/capstone-project/Basys-3-Master.xdc:168]
+WARNING: [Vivado 12-584] No ports matched 'JB[3]'. [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/constrs_1/imports/capstone-project/Basys-3-Master.xdc:169]
+WARNING: [Vivado 12-584] No ports matched 'JB[4]'. [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/constrs_1/imports/capstone-project/Basys-3-Master.xdc:171]
+WARNING: [Vivado 12-584] No ports matched 'JB[4]'. [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/constrs_1/imports/capstone-project/Basys-3-Master.xdc:172]
+WARNING: [Vivado 12-584] No ports matched 'JB[5]'. [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/constrs_1/imports/capstone-project/Basys-3-Master.xdc:174]
+WARNING: [Vivado 12-584] No ports matched 'JB[5]'. [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/constrs_1/imports/capstone-project/Basys-3-Master.xdc:175]
+WARNING: [Vivado 12-584] No ports matched 'JB[6]'. [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/constrs_1/imports/capstone-project/Basys-3-Master.xdc:177]
+WARNING: [Vivado 12-584] No ports matched 'JB[6]'. [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/constrs_1/imports/capstone-project/Basys-3-Master.xdc:178]
+WARNING: [Vivado 12-584] No ports matched 'JB[7]'. [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/constrs_1/imports/capstone-project/Basys-3-Master.xdc:180]
+WARNING: [Vivado 12-584] No ports matched 'JB[7]'. [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/constrs_1/imports/capstone-project/Basys-3-Master.xdc:181]
+WARNING: [Vivado 12-584] No ports matched 'JC[0]'. [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/constrs_1/imports/capstone-project/Basys-3-Master.xdc:187]
+WARNING: [Vivado 12-584] No ports matched 'JC[0]'. [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/constrs_1/imports/capstone-project/Basys-3-Master.xdc:188]
+WARNING: [Vivado 12-584] No ports matched 'JC[1]'. [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/constrs_1/imports/capstone-project/Basys-3-Master.xdc:190]
+WARNING: [Vivado 12-584] No ports matched 'JC[1]'. [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/constrs_1/imports/capstone-project/Basys-3-Master.xdc:191]
+WARNING: [Vivado 12-584] No ports matched 'JC[2]'. [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/constrs_1/imports/capstone-project/Basys-3-Master.xdc:193]
+WARNING: [Vivado 12-584] No ports matched 'JC[2]'. [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/constrs_1/imports/capstone-project/Basys-3-Master.xdc:194]
+WARNING: [Vivado 12-584] No ports matched 'JC[3]'. [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/constrs_1/imports/capstone-project/Basys-3-Master.xdc:196]
+WARNING: [Vivado 12-584] No ports matched 'JC[3]'. [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/constrs_1/imports/capstone-project/Basys-3-Master.xdc:197]
+WARNING: [Vivado 12-584] No ports matched 'JC[4]'. [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/constrs_1/imports/capstone-project/Basys-3-Master.xdc:199]
+WARNING: [Vivado 12-584] No ports matched 'JC[4]'. [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/constrs_1/imports/capstone-project/Basys-3-Master.xdc:200]
+WARNING: [Vivado 12-584] No ports matched 'JC[5]'. [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/constrs_1/imports/capstone-project/Basys-3-Master.xdc:202]
+WARNING: [Vivado 12-584] No ports matched 'JC[5]'. [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/constrs_1/imports/capstone-project/Basys-3-Master.xdc:203]
+WARNING: [Vivado 12-584] No ports matched 'JC[6]'. [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/constrs_1/imports/capstone-project/Basys-3-Master.xdc:205]
+WARNING: [Vivado 12-584] No ports matched 'JC[6]'. [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/constrs_1/imports/capstone-project/Basys-3-Master.xdc:206]
+WARNING: [Vivado 12-584] No ports matched 'JC[7]'. [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/constrs_1/imports/capstone-project/Basys-3-Master.xdc:208]
+WARNING: [Vivado 12-584] No ports matched 'JC[7]'. [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/constrs_1/imports/capstone-project/Basys-3-Master.xdc:209]
+Finished Parsing XDC File [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/constrs_1/imports/capstone-project/Basys-3-Master.xdc]
+WARNING: [Project 1-498] One or more constraints failed evaluation while reading constraint file [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/constrs_1/imports/capstone-project/Basys-3-Master.xdc] and the design contains unresolved black boxes. These constraints will be read post-synthesis (as long as their source constraint file is marked as used_in_implementation) and should be applied correctly then. You should review the constraints listed in the file [.Xil/xc7_top_level_propImpl.xdc] and check the run log file to verify that these constraints were correctly applied.
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/constrs_1/imports/capstone-project/Basys-3-Master.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/xc7_top_level_propImpl.xdc].
+Resolution: To avoid this warning, move constraints listed in [.Xil/xc7_top_level_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
+Parsing XDC File [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.runs/synth_1/dont_touch.xdc]
+Finished Parsing XDC File [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.runs/synth_1/dont_touch.xdc]
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 845.184 ; gain = 0.000
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 845.184 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 24 instances were transformed.
+  IOBUF => IOBUF (IBUF, OBUFT): 24 instances
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 845.184 ; gain = 0.000
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.012 . Memory (MB): peak = 845.184 ; gain = 0.000
+WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'MICROBLAZE/microblaze_i/microblaze_0_local_memory/lmb_bram' at clock pin 'clka' is different from the actual clock period '10.000', this can lead to different synthesis results.
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:10 ; elapsed = 00:00:23 . Memory (MB): peak = 845.184 ; gain = 513.004
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7a35tcpg236-1
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:10 ; elapsed = 00:00:23 . Memory (MB): peak = 845.184 ; gain = 513.004
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+Applied set_property IO_BUFFER_TYPE = NONE for CLK100MHZ. (constraint file  d:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/ip/microblaze_clk_wiz_1_0/microblaze_clk_wiz_1_0/microblaze_clk_wiz_1_0_in_context.xdc, line 3).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for CLK100MHZ. (constraint file  d:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/bd/microblaze/ip/microblaze_clk_wiz_1_0/microblaze_clk_wiz_1_0/microblaze_clk_wiz_1_0_in_context.xdc, line 4).
+Applied set_property DONT_TOUCH = true for MICROBLAZE/microblaze_i. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for MICROBLAZE/microblaze_i/mdm_1. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for MICROBLAZE/microblaze_i/clk_wiz_1. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for MICROBLAZE/microblaze_i/rst_clk_wiz_1_100M. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for MICROBLAZE/microblaze_i/lfsr_iface. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for MICROBLAZE/microblaze_i/mem_data. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for MICROBLAZE/microblaze_i/microblaze_0_axi_periph/xbar. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for MICROBLAZE/microblaze_i/microblaze_0_axi_periph. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for MICROBLAZE/microblaze_i/mem_addr. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for MICROBLAZE/microblaze_i/PmodSD_0. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for MICROBLAZE/microblaze_i/PmodSD_1. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for MICROBLAZE/microblaze_i/PmodSD_2. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for MICROBLAZE/microblaze_i/microblaze_0. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for MICROBLAZE/microblaze_i/microblaze_0_local_memory/dlmb_v10. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for MICROBLAZE/microblaze_i/microblaze_0_local_memory/ilmb_v10. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for MICROBLAZE/microblaze_i/microblaze_0_local_memory/dlmb_bram_if_cntlr. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for MICROBLAZE/microblaze_i/microblaze_0_local_memory/ilmb_bram_if_cntlr. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for MICROBLAZE/microblaze_i/microblaze_0_local_memory/lmb_bram. (constraint file  auto generated constraint, line ).
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:11 ; elapsed = 00:00:23 . Memory (MB): peak = 845.184 ; gain = 513.004
+---------------------------------------------------------------------------------
+INFO: [Synth 8-5545] ROM "count" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "count" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "count" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "count" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "clk" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "clk" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "clk" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "clk" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "count" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "cnt_int" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "delay_out" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-802] inferred FSM for state register 'txState_reg' in module 'UART_TX_CTRL'
+INFO: [Synth 8-5544] ROM "READY" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "bitIndex" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5545] ROM "txState" won't be mapped to RAM because address size (31) is larger than maximum supported(25)
+INFO: [Synth 8-4471] merging register 'sendStr_reg[19][7:0]' into 'sendStr_reg[18][7:0]' [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/imports/lfsr_mem_to_ublaze/lfsr_mem_to_ublaze.srcs/sources_1/imports/capstone-project/xc7_top_level.vhd:520]
+INFO: [Synth 8-4471] merging register 'sendStr_reg[21][7:0]' into 'sendStr_reg[20][7:0]' [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/imports/lfsr_mem_to_ublaze/lfsr_mem_to_ublaze.srcs/sources_1/imports/capstone-project/xc7_top_level.vhd:520]
+INFO: [Synth 8-4471] merging register 'sendStr_reg[27][7:0]' into 'sendStr_reg[20][7:0]' [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/imports/lfsr_mem_to_ublaze/lfsr_mem_to_ublaze.srcs/sources_1/imports/capstone-project/xc7_top_level.vhd:520]
+INFO: [Synth 8-4471] merging register 'sendStr_reg[28][7:0]' into 'sendStr_reg[23][7:0]' [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/imports/lfsr_mem_to_ublaze/lfsr_mem_to_ublaze.srcs/sources_1/imports/capstone-project/xc7_top_level.vhd:520]
+INFO: [Synth 8-4471] merging register 'sendStr_reg[29][7:0]' into 'sendStr_reg[23][7:0]' [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/imports/lfsr_mem_to_ublaze/lfsr_mem_to_ublaze.srcs/sources_1/imports/capstone-project/xc7_top_level.vhd:520]
+INFO: [Synth 8-4471] merging register 'sendStr_reg[30][7:0]' into 'sendStr_reg[23][7:0]' [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/imports/lfsr_mem_to_ublaze/lfsr_mem_to_ublaze.srcs/sources_1/imports/capstone-project/xc7_top_level.vhd:520]
+INFO: [Synth 8-4471] merging register 'sendStr_reg[32][7:0]' into 'sendStr_reg[31][7:0]' [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/imports/lfsr_mem_to_ublaze/lfsr_mem_to_ublaze.srcs/sources_1/imports/capstone-project/xc7_top_level.vhd:520]
+INFO: [Synth 8-4471] merging register 'sendStr_reg[10][7:0]' into 'sendStr_reg[3][7:0]' [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/imports/lfsr_mem_to_ublaze/lfsr_mem_to_ublaze.srcs/sources_1/imports/capstone-project/xc7_top_level.vhd:520]
+INFO: [Synth 8-4471] merging register 'sendStr_reg[11][7:0]' into 'sendStr_reg[9][7:0]' [D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.srcs/sources_1/imports/lfsr_mem_to_ublaze/lfsr_mem_to_ublaze.srcs/sources_1/imports/capstone-project/xc7_top_level.vhd:520]
+INFO: [Synth 8-802] inferred FSM for state register 'uartState_reg' in module 'xc7_top_level'
+INFO: [Synth 8-5546] ROM "uartState" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5544] ROM "strIndex" won't be mapped to Block RAM because address size (3) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "sendStr[5]" won't be mapped to Block RAM because address size (3) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "uartState" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                     rdy |                               00 |                               00
+                load_bit |                               01 |                               01
+                send_bit |                               10 |                               10
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'txState_reg' using encoding 'sequential' in module 'UART_TX_CTRL'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                 rst_reg |                              000 |                              000
+             ld_init_str |                              001 |                              001
+               send_char |                              010 |                              010
+                 rdy_low |                              011 |                              011
+                wait_rdy |                              100 |                              100
+                wait_btn |                              101 |                              101
+              ld_btn_str |                              110 |                              110
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'uartState_reg' using encoding 'sequential' in module 'xc7_top_level'
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:12 ; elapsed = 00:00:25 . Memory (MB): peak = 845.184 ; gain = 513.004
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     32 Bit       Adders := 4     
++---XORs : 
+	   4 Input      1 Bit         XORs := 1     
++---Registers : 
+	               32 Bit    Registers := 5     
+	               31 Bit    Registers := 1     
+	               16 Bit    Registers := 3     
+	               11 Bit    Registers := 1     
+	               10 Bit    Registers := 1     
+	                8 Bit    Registers := 30    
+	                4 Bit    Registers := 2     
+	                2 Bit    Registers := 1     
+	                1 Bit    Registers := 12    
++---RAMs : 
+	              62K Bit         RAMs := 1     
++---Muxes : 
+	   2 Input     32 Bit        Muxes := 6     
+	   4 Input     32 Bit        Muxes := 1     
+	   5 Input     32 Bit        Muxes := 1     
+	   2 Input     16 Bit        Muxes := 5     
+	   3 Input      8 Bit        Muxes := 12    
+	   3 Input      7 Bit        Muxes := 3     
+	   2 Input      7 Bit        Muxes := 6     
+	   3 Input      6 Bit        Muxes := 1     
+	   2 Input      6 Bit        Muxes := 3     
+	   2 Input      5 Bit        Muxes := 1     
+	   4 Input      4 Bit        Muxes := 2     
+	   7 Input      3 Bit        Muxes := 1     
+	   2 Input      3 Bit        Muxes := 1     
+	   4 Input      2 Bit        Muxes := 2     
+	   3 Input      2 Bit        Muxes := 1     
+	   2 Input      2 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 17    
+	   6 Input      1 Bit        Muxes := 1     
+	   5 Input      1 Bit        Muxes := 1     
+	   3 Input      1 Bit        Muxes := 2     
+	   7 Input      1 Bit        Muxes := 1     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Hierarchical Component Statistics 
+---------------------------------------------------------------------------------
+Hierarchical RTL Component report 
+Module xc7_top_level 
+Detailed RTL Component Info : 
++---Registers : 
+	               32 Bit    Registers := 1     
+	               31 Bit    Registers := 1     
+	                8 Bit    Registers := 30    
+	                1 Bit    Registers := 2     
++---Muxes : 
+	   3 Input      8 Bit        Muxes := 12    
+	   3 Input      7 Bit        Muxes := 3     
+	   2 Input      7 Bit        Muxes := 6     
+	   3 Input      6 Bit        Muxes := 1     
+	   2 Input      6 Bit        Muxes := 3     
+	   2 Input      5 Bit        Muxes := 1     
+	   7 Input      3 Bit        Muxes := 1     
+	   2 Input      3 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 10    
+	   7 Input      1 Bit        Muxes := 1     
+	   3 Input      1 Bit        Muxes := 1     
+Module ram 
+Detailed RTL Component Info : 
++---Registers : 
+	               11 Bit    Registers := 1     
++---RAMs : 
+	              62K Bit         RAMs := 1     
+Module dflipflop 
+Detailed RTL Component Info : 
++---Registers : 
+	                1 Bit    Registers := 2     
+Module clock_divider 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     32 Bit       Adders := 1     
++---Registers : 
+	               32 Bit    Registers := 1     
+	                1 Bit    Registers := 1     
++---Muxes : 
+	   2 Input     32 Bit        Muxes := 4     
+	   4 Input     32 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 3     
+	   6 Input      1 Bit        Muxes := 1     
+Module display_counter 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     32 Bit       Adders := 1     
++---Registers : 
+	               32 Bit    Registers := 1     
+	                2 Bit    Registers := 1     
++---Muxes : 
+	   5 Input     32 Bit        Muxes := 1     
+	   4 Input      2 Bit        Muxes := 2     
+	   5 Input      1 Bit        Muxes := 1     
+Module char_decoder 
+Detailed RTL Component Info : 
++---Registers : 
+	                4 Bit    Registers := 2     
++---Muxes : 
+	   4 Input      4 Bit        Muxes := 2     
+Module lfsr 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     32 Bit       Adders := 1     
++---XORs : 
+	   4 Input      1 Bit         XORs := 1     
++---Registers : 
+	               32 Bit    Registers := 1     
+	               16 Bit    Registers := 3     
+	                1 Bit    Registers := 3     
++---Muxes : 
+	   2 Input     32 Bit        Muxes := 1     
+	   2 Input     16 Bit        Muxes := 5     
+Module delay_counter 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     32 Bit       Adders := 1     
++---Registers : 
+	               32 Bit    Registers := 1     
+	                1 Bit    Registers := 1     
++---Muxes : 
+	   2 Input     32 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 1     
+Module UART_TX_CTRL 
+Detailed RTL Component Info : 
++---Registers : 
+	               10 Bit    Registers := 1     
+	                1 Bit    Registers := 1     
++---Muxes : 
+	   3 Input      2 Bit        Muxes := 1     
+	   2 Input      2 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 3     
+	   3 Input      1 Bit        Muxes := 1     
+---------------------------------------------------------------------------------
+Finished RTL Hierarchical Component Statistics
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 90 (col length:60)
+BRAMs: 100 (col length: RAMB18 60 RAMB36 30)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+Warning: Parallel synthesis criteria is not met 
+INFO: [Synth 8-5545] ROM "DIVIDE_CLOCK/count" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "DIVIDE_CLOCK/count" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "DIVIDE_CLOCK/count" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "DIVIDE_CLOCK/count" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "DIVIDE_CLOCK/clk" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "DIVIDE_CLOCK/clk" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "DIVIDE_CLOCK/clk" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "p_0_out" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "p_0_out" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "SHIFT_REG/count" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "TWO_SEC_DELAY/cnt_int" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "TWO_SEC_DELAY/delay_out" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5546] ROM "uartState" won't be mapped to RAM because it is too sparse
+WARNING: [Synth 8-3917] design xc7_top_level has port dp driven by constant 1
+WARNING: [Synth 8-3331] design microblaze_microblaze_0_axi_periph_0 has unconnected port M00_ACLK
+WARNING: [Synth 8-3331] design microblaze_microblaze_0_axi_periph_0 has unconnected port M00_ARESETN
+WARNING: [Synth 8-3331] design microblaze_microblaze_0_axi_periph_0 has unconnected port M01_ACLK
+WARNING: [Synth 8-3331] design microblaze_microblaze_0_axi_periph_0 has unconnected port M01_ARESETN
+WARNING: [Synth 8-3331] design microblaze_microblaze_0_axi_periph_0 has unconnected port M02_ACLK
+WARNING: [Synth 8-3331] design microblaze_microblaze_0_axi_periph_0 has unconnected port M02_ARESETN
+WARNING: [Synth 8-3331] design microblaze_microblaze_0_axi_periph_0 has unconnected port M03_ACLK
+WARNING: [Synth 8-3331] design microblaze_microblaze_0_axi_periph_0 has unconnected port M03_ARESETN
+WARNING: [Synth 8-3331] design microblaze_microblaze_0_axi_periph_0 has unconnected port M04_ACLK
+WARNING: [Synth 8-3331] design microblaze_microblaze_0_axi_periph_0 has unconnected port M04_ARESETN
+WARNING: [Synth 8-3331] design microblaze_microblaze_0_axi_periph_0 has unconnected port M05_ACLK
+WARNING: [Synth 8-3331] design microblaze_microblaze_0_axi_periph_0 has unconnected port M05_ARESETN
+WARNING: [Synth 8-3331] design microblaze_microblaze_0_axi_periph_0 has unconnected port M06_ACLK
+WARNING: [Synth 8-3331] design microblaze_microblaze_0_axi_periph_0 has unconnected port M06_ARESETN
+WARNING: [Synth 8-3331] design microblaze_microblaze_0_axi_periph_0 has unconnected port M07_ACLK
+WARNING: [Synth 8-3331] design microblaze_microblaze_0_axi_periph_0 has unconnected port M07_ARESETN
+WARNING: [Synth 8-3331] design microblaze_microblaze_0_axi_periph_0 has unconnected port M08_ACLK
+WARNING: [Synth 8-3331] design microblaze_microblaze_0_axi_periph_0 has unconnected port M08_ARESETN
+WARNING: [Synth 8-3331] design microblaze_microblaze_0_axi_periph_0 has unconnected port S00_ACLK
+WARNING: [Synth 8-3331] design microblaze_microblaze_0_axi_periph_0 has unconnected port S00_ARESETN
+WARNING: [Synth 8-3331] design xc7_top_level has unconnected port ja_5
+WARNING: [Synth 8-3331] design xc7_top_level has unconnected port jb_5
+WARNING: [Synth 8-3331] design xc7_top_level has unconnected port jc_5
+WARNING: [Synth 8-3331] design xc7_top_level has unconnected port btn[4]
+WARNING: [Synth 8-3331] design xc7_top_level has unconnected port btn[3]
+WARNING: [Synth 8-3331] design xc7_top_level has unconnected port btn[2]
+WARNING: [Synth 8-3331] design xc7_top_level has unconnected port btn[1]
+RAM Pipeline Warning: Read Address Register Found For RAM mem_reg. We will not be able to pipeline it. This may degrade performance. 
+RAM Pipeline Warning: Read Address Register Found For RAM mem_reg. We will not be able to pipeline it. This may degrade performance. 
+RAM Pipeline Warning: Read Address Register Found For RAM mem_reg. We will not be able to pipeline it. This may degrade performance. 
+INFO: [Synth 8-3886] merging instance 'uart_in_reg[7]' (FD) to 'uart_in_reg[31]'
+INFO: [Synth 8-3886] merging instance 'uart_in_reg[15]' (FD) to 'uart_in_reg[31]'
+INFO: [Synth 8-3886] merging instance 'uart_in_reg[23]' (FD) to 'uart_in_reg[31]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\uart_in_reg[31] )
+INFO: [Synth 8-3886] merging instance 'uart_in_reg[5]' (FD) to 'uart_in_reg[4]'
+INFO: [Synth 8-3886] merging instance 'uart_in_reg[13]' (FD) to 'uart_in_reg[12]'
+INFO: [Synth 8-3886] merging instance 'uart_in_reg[21]' (FD) to 'uart_in_reg[20]'
+INFO: [Synth 8-3886] merging instance 'uart_in_reg[29]' (FD) to 'uart_in_reg[28]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\strEnd_reg[0] )
+INFO: [Synth 8-3886] merging instance 'strEnd_reg[2]' (FDE) to 'strEnd_reg[3]'
+INFO: [Synth 8-3886] merging instance 'dataCHAR_reg[3][7]' (FD) to 'uart_in_reg[31]'
+INFO: [Synth 8-3886] merging instance 'dataCHAR_reg[2][7]' (FD) to 'uart_in_reg[31]'
+INFO: [Synth 8-3886] merging instance 'dataCHAR_reg[1][7]' (FD) to 'uart_in_reg[31]'
+INFO: [Synth 8-3886] merging instance 'dataCHAR_reg[0][7]' (FD) to 'uart_in_reg[31]'
+INFO: [Synth 8-3886] merging instance 'dataCHAR_reg[3][5]' (FD) to 'dataCHAR_reg[3][4]'
+INFO: [Synth 8-3886] merging instance 'dataCHAR_reg[2][5]' (FD) to 'dataCHAR_reg[2][4]'
+INFO: [Synth 8-3886] merging instance 'dataCHAR_reg[1][5]' (FD) to 'dataCHAR_reg[1][4]'
+INFO: [Synth 8-3886] merging instance 'dataCHAR_reg[0][5]' (FD) to 'dataCHAR_reg[0][4]'
+INFO: [Synth 8-3886] merging instance 'sendStr_reg[33][7]' (FDRE) to 'sendStr_reg[33][1]'
+INFO: [Synth 8-3886] merging instance 'sendStr_reg[26][7]' (FDRE) to 'sendStr_reg[33][1]'
+INFO: [Synth 8-3886] merging instance 'sendStr_reg[25][7]' (FDRE) to 'sendStr_reg[33][1]'
+INFO: [Synth 8-3886] merging instance 'sendStr_reg[24][7]' (FDRE) to 'sendStr_reg[33][1]'
+INFO: [Synth 8-3886] merging instance 'sendStr_reg[31][7]' (FDRE) to 'sendStr_reg[33][1]'
+INFO: [Synth 8-3886] merging instance 'sendStr_reg[23][7]' (FDRE) to 'sendStr_reg[33][1]'
+INFO: [Synth 8-3886] merging instance 'sendStr_reg[22][7]' (FDRE) to 'sendStr_reg[33][1]'
+INFO: [Synth 8-3886] merging instance 'sendStr_reg[20][7]' (FDRE) to 'sendStr_reg[33][1]'
+INFO: [Synth 8-3886] merging instance 'sendStr_reg[18][7]' (FDRE) to 'sendStr_reg[33][1]'
+INFO: [Synth 8-3886] merging instance 'sendStr_reg[17][7]' (FDRE) to 'sendStr_reg[17][4]'
+INFO: [Synth 8-3886] merging instance 'sendStr_reg[16][7]' (FDRE) to 'sendStr_reg[16][0]'
+INFO: [Synth 8-3886] merging instance 'sendStr_reg[15][7]' (FDRE) to 'sendStr_reg[15][6]'
+INFO: [Synth 8-3886] merging instance 'sendStr_reg[14][7]' (FDRE) to 'sendStr_reg[14][4]'
+INFO: [Synth 8-3886] merging instance 'sendStr_reg[13][7]' (FDRE) to 'sendStr_reg[12][7]'
+INFO: [Synth 8-3886] merging instance 'sendStr_reg[12][7]' (FDRE) to 'sendStr_reg[13][3]'
+INFO: [Synth 8-3886] merging instance 'sendStr_reg[9][7]' (FDRE) to 'sendStr_reg[9][3]'
+INFO: [Synth 8-3886] merging instance 'sendStr_reg[8][7]' (FDRE) to 'sendStr_reg[7][7]'
+INFO: [Synth 8-3886] merging instance 'sendStr_reg[7][7]' (FDRE) to 'sendStr_reg[6][7]'
+INFO: [Synth 8-3886] merging instance 'sendStr_reg[6][7]' (FDRE) to 'sendStr_reg[5][7]'
+INFO: [Synth 8-3886] merging instance 'sendStr_reg[4][7]' (FDRE) to 'sendStr_reg[4][4]'
+INFO: [Synth 8-3886] merging instance 'sendStr_reg[3][7]' (FDRE) to 'sendStr_reg[3][1]'
+INFO: [Synth 8-3886] merging instance 'sendStr_reg[2][7]' (FDRE) to 'sendStr_reg[2][4]'
+INFO: [Synth 8-3886] merging instance 'sendStr_reg[1][7]' (FDRE) to 'sendStr_reg[1][1]'
+INFO: [Synth 8-3886] merging instance 'sendStr_reg[0][7]' (FDRE) to 'sendStr_reg[1][1]'
+INFO: [Synth 8-3886] merging instance 'sendStr_reg[33][6]' (FDRE) to 'sendStr_reg[33][1]'
+INFO: [Synth 8-3886] merging instance 'sendStr_reg[26][6]' (FDSE) to 'sendStr_reg[33][0]'
+INFO: [Synth 8-3886] merging instance 'sendStr_reg[25][6]' (FDSE) to 'sendStr_reg[33][0]'
+INFO: [Synth 8-3886] merging instance 'sendStr_reg[24][6]' (FDSE) to 'sendStr_reg[33][0]'
+INFO: [Synth 8-3886] merging instance 'sendStr_reg[31][6]' (FDRE) to 'sendStr_reg[33][1]'
+INFO: [Synth 8-3886] merging instance 'sendStr_reg[23][6]' (FDRE) to 'sendStr_reg[33][1]'
+INFO: [Synth 8-3886] merging instance 'sendStr_reg[22][6]' (FDSE) to 'sendStr_reg[33][0]'
+INFO: [Synth 8-3886] merging instance 'sendStr_reg[20][6]' (FDSE) to 'sendStr_reg[33][0]'
+INFO: [Synth 8-3886] merging instance 'sendStr_reg[18][6]' (FDSE) to 'sendStr_reg[33][0]'
+INFO: [Synth 8-3886] merging instance 'sendStr_reg[17][6]' (FDSE) to 'sendStr_reg[17][0]'
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (\sendStr_reg[16][6] )
+INFO: [Synth 8-3886] merging instance 'sendStr_reg[15][6]' (FDRE) to 'sendStr_reg[15][4]'
+INFO: [Synth 8-3886] merging instance 'sendStr_reg[14][6]' (FDSE) to 'sendStr_reg[14][2]'
+INFO: [Synth 8-3886] merging instance 'sendStr_reg[13][6]' (FDSE) to 'sendStr_reg[12][6]'
+INFO: [Synth 8-3886] merging instance 'sendStr_reg[12][6]' (FDSE) to 'sendStr_reg[12][4]'
+INFO: [Synth 8-3886] merging instance 'sendStr_reg[9][6]' (FDSE) to 'sendStr_reg[9][4]'
+INFO: [Synth 8-3886] merging instance 'sendStr_reg[4][6]' (FDSE) to 'sendStr_reg[4][2]'
+INFO: [Synth 8-3886] merging instance 'sendStr_reg[3][6]' (FDSE) to 'sendStr_reg[3][3]'
+INFO: [Synth 8-3886] merging instance 'sendStr_reg[2][6]' (FDSE) to 'sendStr_reg[2][3]'
+INFO: [Synth 8-3886] merging instance 'sendStr_reg[1][6]' (FDRE) to 'sendStr_reg[1][1]'
+INFO: [Synth 8-3886] merging instance 'sendStr_reg[0][6]' (FDRE) to 'sendStr_reg[1][1]'
+INFO: [Synth 8-3886] merging instance 'sendStr_reg[33][5]' (FDRE) to 'sendStr_reg[33][1]'
+INFO: [Synth 8-3886] merging instance 'sendStr_reg[26][5]' (FDRE) to 'sendStr_reg[33][1]'
+INFO: [Synth 8-3886] merging instance 'sendStr_reg[25][5]' (FDRE) to 'sendStr_reg[33][1]'
+INFO: [Synth 8-3886] merging instance 'sendStr_reg[24][5]' (FDRE) to 'sendStr_reg[33][1]'
+INFO: [Synth 8-3886] merging instance 'sendStr_reg[31][5]' (FDRE) to 'sendStr_reg[33][1]'
+INFO: [Synth 8-3886] merging instance 'sendStr_reg[23][5]' (FDSE) to 'sendStr_reg[33][0]'
+INFO: [Synth 8-3886] merging instance 'sendStr_reg[22][5]' (FDRE) to 'sendStr_reg[33][1]'
+INFO: [Synth 8-3886] merging instance 'sendStr_reg[20][5]' (FDRE) to 'sendStr_reg[33][1]'
+INFO: [Synth 8-3886] merging instance 'sendStr_reg[18][5]' (FDRE) to 'sendStr_reg[33][1]'
+INFO: [Synth 8-3886] merging instance 'sendStr_reg[16][5]' (FDRE) to 'sendStr_reg[16][4]'
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (\sendStr_reg[15][5] )
+INFO: [Synth 8-3886] merging instance 'sendStr_reg[13][5]' (FDRE) to 'sendStr_reg[12][5]'
+INFO: [Synth 8-3886] merging instance 'sendStr_reg[12][5]' (FDRE) to 'sendStr_reg[13][4]'
+INFO: [Synth 8-3886] merging instance 'sendStr_reg[8][5]' (FDRE) to 'sendStr_reg[8][4]'
+INFO: [Synth 8-3886] merging instance 'sendStr_reg[7][5]' (FDRE) to 'sendStr_reg[7][4]'
+INFO: [Synth 8-3886] merging instance 'sendStr_reg[5][5]' (FDRE) to 'sendStr_reg[5][4]'
+INFO: [Synth 8-3886] merging instance 'sendStr_reg[3][5]' (FDRE) to 'sendStr_reg[3][4]'
+INFO: [Synth 8-3886] merging instance 'sendStr_reg[1][5]' (FDRE) to 'sendStr_reg[1][1]'
+INFO: [Synth 8-3886] merging instance 'sendStr_reg[0][5]' (FDRE) to 'sendStr_reg[1][1]'
+INFO: [Synth 8-3886] merging instance 'sendStr_reg[33][4]' (FDRE) to 'sendStr_reg[33][1]'
+INFO: [Synth 8-3886] merging instance 'sendStr_reg[26][4]' (FDRE) to 'sendStr_reg[33][1]'
+INFO: [Synth 8-3886] merging instance 'sendStr_reg[25][4]' (FDRE) to 'sendStr_reg[33][1]'
+INFO: [Synth 8-3886] merging instance 'sendStr_reg[24][4]' (FDRE) to 'sendStr_reg[33][1]'
+INFO: [Synth 8-3886] merging instance 'sendStr_reg[31][4]' (FDRE) to 'sendStr_reg[33][1]'
+INFO: [Synth 8-3886] merging instance 'sendStr_reg[23][4]' (FDRE) to 'sendStr_reg[33][1]'
+INFO: [Synth 8-3886] merging instance 'sendStr_reg[22][4]' (FDRE) to 'sendStr_reg[33][1]'
+INFO: [Synth 8-3886] merging instance 'sendStr_reg[20][4]' (FDRE) to 'sendStr_reg[33][1]'
+INFO: [Synth 8-3886] merging instance 'sendStr_reg[18][4]' (FDRE) to 'sendStr_reg[33][1]'
+INFO: [Synth 8-3886] merging instance 'sendStr_reg[17][4]' (FDRE) to 'sendStr_reg[17][3]'
+INFO: [Synth 8-3886] merging instance 'sendStr_reg[16][4]' (FDRE) to 'sendStr_reg[16][3]'
+INFO: [Synth 8-3886] merging instance 'sendStr_reg[15][4]' (FDRE) to 'sendStr_reg[15][3]'
+INFO: [Synth 8-3886] merging instance 'sendStr_reg[14][4]' (FDRE) to 'sendStr_reg[14][3]'
+INFO: [Synth 8-3886] merging instance 'sendStr_reg[13][4]' (FDRE) to 'sendStr_reg[13][0]'
+INFO: [Synth 8-3886] merging instance 'sendStr_reg[12][4]' (FDSE) to 'sendStr_reg[13][2]'
+INFO: [Synth 8-3886] merging instance 'sendStr_reg[9][4]' (FDSE) to 'sendStr_reg[9][2]'
+INFO: [Synth 8-3886] merging instance 'sendStr_reg[4][4]' (FDRE) to 'sendStr_reg[4][3]'
+INFO: [Synth 8-3886] merging instance 'sendStr_reg[3][4]' (FDRE) to 'sendStr_reg[3][2]'
+INFO: [Synth 8-3886] merging instance 'sendStr_reg[2][4]' (FDRE) to 'sendStr_reg[2][2]'
+INFO: [Synth 8-3886] merging instance 'sendStr_reg[1][4]' (FDRE) to 'sendStr_reg[1][1]'
+INFO: [Synth 8-3886] merging instance 'sendStr_reg[0][4]' (FDRE) to 'sendStr_reg[1][1]'
+INFO: [Synth 8-3886] merging instance 'sendStr_reg[33][3]' (FDSE) to 'sendStr_reg[33][0]'
+INFO: [Common 17-14] Message 'Synth 8-3886' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\sendStr_reg[4][3] )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (\sendStr_reg[3][3] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\sendStr_reg[17][1] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\sendStr_reg[14][1] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\sendStr_reg[12][1] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\sendStr_reg[3][1] )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (\sendStr_reg[20][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\sendStr_reg[18][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\sendStr_reg[16][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\sendStr_reg[15][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\sendStr_reg[9][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\sendStr_reg[2][0] )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (\sendStr_reg[1][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\sendStr_reg[0][0] )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (\INST_UART_TX_CTRL/txData_reg[9] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\INST_UART_TX_CTRL/txData_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\uart_in_reg[31] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\uartData_reg[7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\INST_UART_TX_CTRL/txData_reg[8] )
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:16 ; elapsed = 00:00:29 . Memory (MB): peak = 845.184 ; gain = 513.004
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP and Shift Register Reporting
+---------------------------------------------------------------------------------
+
+Block RAM: Preliminary Mapping  Report (see note below)
++------------+------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+|Module Name | RTL Object | PORT A (Depth x Width) | W | R | PORT B (Depth x Width) | W | R | Ports driving FF | RAMB18 | RAMB36 | 
++------------+------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+|ram:        | mem_reg    | 2 K x 32(WRITE_FIRST)  | W | R |                        |   |   | Port A           | 0      | 2      | 
++------------+------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+
+Note: The table above is a preliminary report that shows the Block RAMs at the current stage of the synthesis flow. Some Block RAMs may be reimplemented as non Block RAM primitives later in the synthesis flow. Multiple instantiated Block RAMs are reported only once. 
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP and Shift Register Reporting
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6837] The timing for the instance RAM1/i_0/mem_reg_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance RAM1/i_0/mem_reg_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+INFO: [Synth 8-5578] Moved timing constraint from pin 'MICROBLAZE/microblaze_i/mdm_1/Dbg_Clk_0' to pin 'MICROBLAZE/microblaze_i/mdm_1/bbstub_Dbg_Clk_0/O'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'MICROBLAZE/microblaze_i/mdm_1/Dbg_Update_0' to pin 'MICROBLAZE/microblaze_i/mdm_1/bbstub_Dbg_Update_0/O'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'MICROBLAZE/microblaze_i/clk_wiz_1/clk_out1' to pin 'MICROBLAZE/microblaze_i/clk_wiz_1/bbstub_clk_out1/O'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'MICROBLAZE/microblaze_i/microblaze_0_local_memory/dlmb_bram_if_cntlr/BRAM_Clk_A' to pin 'MICROBLAZE/microblaze_i/microblaze_0_local_memory/dlmb_bram_if_cntlr/bbstub_BRAM_Clk_A/O'
+INFO: [Synth 8-5578] Moved timing constraint from pin 'MICROBLAZE/microblaze_i/microblaze_0_local_memory/ilmb_bram_if_cntlr/BRAM_Clk_A' to pin 'MICROBLAZE/microblaze_i/microblaze_0_local_memory/ilmb_bram_if_cntlr/bbstub_BRAM_Clk_A/O'
+INFO: [Synth 8-5819] Moved 5 constraints on hierarchical pins to their respective driving/loading pins
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:23 ; elapsed = 00:00:35 . Memory (MB): peak = 845.184 ; gain = 513.004
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:23 ; elapsed = 00:00:36 . Memory (MB): peak = 856.613 ; gain = 524.434
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP and Shift Register Reporting
+---------------------------------------------------------------------------------
+
+Block RAM: Final Mapping  Report
++------------+------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+|Module Name | RTL Object | PORT A (Depth x Width) | W | R | PORT B (Depth x Width) | W | R | Ports driving FF | RAMB18 | RAMB36 | 
++------------+------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+|ram:        | mem_reg    | 2 K x 32(WRITE_FIRST)  | W | R |                        |   |   | Port A           | 0      | 2      | 
++------------+------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP and Shift Register Reporting
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6837] The timing for the instance RAM1/mem_reg_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance RAM1/mem_reg_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:24 ; elapsed = 00:00:36 . Memory (MB): peak = 857.898 ; gain = 525.719
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:25 ; elapsed = 00:00:37 . Memory (MB): peak = 857.898 ; gain = 525.719
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:25 ; elapsed = 00:00:37 . Memory (MB): peak = 857.898 ; gain = 525.719
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:25 ; elapsed = 00:00:37 . Memory (MB): peak = 857.898 ; gain = 525.719
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:25 ; elapsed = 00:00:37 . Memory (MB): peak = 857.898 ; gain = 525.719
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:25 ; elapsed = 00:00:37 . Memory (MB): peak = 857.898 ; gain = 525.719
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:25 ; elapsed = 00:00:37 . Memory (MB): peak = 857.898 ; gain = 525.719
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++------+--------------------------------+----------+
+|      |BlackBox name                   |Instances |
++------+--------------------------------+----------+
+|1     |microblaze_xbar_0               |         1|
+|2     |microblaze_PmodSD_0_1           |         1|
+|3     |microblaze_PmodSD_1_1           |         1|
+|4     |microblaze_PmodSD_2_1           |         1|
+|5     |microblaze_clk_wiz_1_0          |         1|
+|6     |microblaze_axi_gpio_0_0         |         1|
+|7     |microblaze_mdm_1_0              |         1|
+|8     |microblaze_mem_iface_0          |         1|
+|9     |microblaze_axi_gpio_0_1         |         1|
+|10    |microblaze_microblaze_0_1       |         1|
+|11    |microblaze_rst_clk_wiz_1_100M_0 |         1|
+|12    |microblaze_dlmb_bram_if_cntlr_1 |         1|
+|13    |microblaze_dlmb_v10_1           |         1|
+|14    |microblaze_ilmb_bram_if_cntlr_1 |         1|
+|15    |microblaze_ilmb_v10_1           |         1|
+|16    |microblaze_lmb_bram_1           |         1|
++------+--------------------------------+----------+
+
+Report Cell Usage: 
++------+----------------------------------------+------+
+|      |Cell                                    |Count |
++------+----------------------------------------+------+
+|1     |microblaze_PmodSD_0_1_bbox_0            |     1|
+|2     |microblaze_PmodSD_1_1_bbox_1            |     1|
+|3     |microblaze_PmodSD_2_1_bbox_2            |     1|
+|4     |microblaze_axi_gpio_0_0_bbox_4          |     1|
+|5     |microblaze_axi_gpio_0_1_bbox_7          |     1|
+|6     |microblaze_clk_wiz_1_0_bbox_3           |     1|
+|7     |microblaze_dlmb_bram_if_cntlr_1_bbox_10 |     1|
+|8     |microblaze_dlmb_v10_1_bbox_11           |     1|
+|9     |microblaze_ilmb_bram_if_cntlr_1_bbox_12 |     1|
+|10    |microblaze_ilmb_v10_1_bbox_13           |     1|
+|11    |microblaze_lmb_bram_1_bbox_14           |     1|
+|12    |microblaze_mdm_1_0_bbox_5               |     1|
+|13    |microblaze_mem_iface_0_bbox_6           |     1|
+|14    |microblaze_microblaze_0_1_bbox_8        |     1|
+|15    |microblaze_rst_clk_wiz_1_100M_0_bbox_15 |     1|
+|16    |microblaze_xbar_0_bbox_9                |     1|
+|17    |BUFG                                    |     1|
+|18    |CARRY4                                  |    60|
+|19    |LUT1                                    |    10|
+|20    |LUT2                                    |    79|
+|21    |LUT3                                    |    40|
+|22    |LUT4                                    |    51|
+|23    |LUT5                                    |    68|
+|24    |LUT6                                    |   129|
+|25    |MUXF7                                   |     3|
+|26    |RAMB36E1                                |     2|
+|27    |FDCE                                    |   137|
+|28    |FDPE                                    |    12|
+|29    |FDRE                                    |   213|
+|30    |FDSE                                    |    10|
+|31    |IBUF                                    |    16|
+|32    |IOBUF                                   |    24|
+|33    |OBUF                                    |    29|
++------+----------------------------------------+------+
+
+Report Instance Areas: 
++------+--------------------------------+-------------------------------------+------+
+|      |Instance                        |Module                               |Cells |
++------+--------------------------------+-------------------------------------+------+
+|1     |top                             |                                     |  3124|
+|2     |  RAM1                          |ram                                  |     2|
+|3     |  DIVIDE_CLOCK                  |clock_divider                        |   103|
+|4     |  INST_UART_TX_CTRL             |UART_TX_CTRL                         |    93|
+|5     |  MICROBLAZE                    |microblaze_wrapper                   |  2264|
+|6     |    microblaze_i                |microblaze                           |  2240|
+|7     |      microblaze_0_axi_periph   |microblaze_microblaze_0_axi_periph_0 |  1040|
+|8     |      microblaze_0_local_memory |microblaze_0_local_memory_imp_HPR3PZ |   496|
+|9     |  SEVEN_SEGMENT_DISPLAY         |char_decoder                         |   127|
+|10    |    TIMER                       |display_counter                      |   107|
+|11    |  SHIFT_REG                     |lfsr                                 |   177|
+|12    |  TWO_SEC_DELAY                 |delay_counter                        |    83|
++------+--------------------------------+-------------------------------------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:25 ; elapsed = 00:00:37 . Memory (MB): peak = 857.898 ; gain = 525.719
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 28 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:16 ; elapsed = 00:00:20 . Memory (MB): peak = 857.898 ; gain = 185.359
+Synthesis Optimization Complete : Time (s): cpu = 00:00:25 ; elapsed = 00:00:38 . Memory (MB): peak = 857.898 ; gain = 525.719
+INFO: [Project 1-571] Translating synthesized netlist
+INFO: [Netlist 29-17] Analyzing 89 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-140] Inserted 1 IBUFs to IO ports without IO buffers.
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 857.898 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 24 instances were transformed.
+  IOBUF => IOBUF (IBUF, OBUFT): 24 instances
+
+INFO: [Common 17-83] Releasing license: Synthesis
+314 Infos, 131 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:26 ; elapsed = 00:00:40 . Memory (MB): peak = 857.898 ; gain = 535.391
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 857.898 ; gain = 0.000
+WARNING: [Constraints 18-5210] No constraints selected for write.
+Resolution: This message can indicate that there are no constraints for the design, or it can indicate that the used_in flags are set such that the constraints are ignored. This later case is used when running synth_design to not write synthesis constraints to the resulting checkpoint. Instead, project constraints are read when the synthesized design is opened.
+INFO: [Common 17-1381] The checkpoint 'D:/CAPSTONE_FINAL_DESIGN/balloon_final/balloon_final.runs/synth_1/xc7_top_level.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_utilization -file xc7_top_level_utilization_synth.rpt -pb xc7_top_level_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Thu Apr  4 09:18:20 2019...

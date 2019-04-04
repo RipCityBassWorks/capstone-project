@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<item value="bootloop" key="xc7_top_level_hw_platform_0-microblaze_0-initElf"/>
+	<item value="xc7_top_level_hw_platform_0" key="programfpga.hwplatform"/>
+	<item value="xc7_top_level.bit" key="xc7_top_level_hw_platform_0-bitFile"/>
+	<item value="Auto Detect" key="xc7_top_level_hw_platform_0-device"/>
+	<item value="false" key="xc7_top_level_hw_platform_0-partial_bit"/>
+	<item value="" key="xc7_top_level_hw_platform_0-bmmFile"/>
+	<item value="Local" key="xc7_top_level_hw_platform_0-target"/>
+</section>

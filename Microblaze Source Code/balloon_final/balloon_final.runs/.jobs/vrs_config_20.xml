@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<Runs Version="1" Minor="0">
+	<Run Id="microblaze_axi_gpio_0_1_synth_1" LaunchDir="D:/CAPSTONE FINAL DESIGN/balloon_final/balloon_final.runs/microblaze_axi_gpio_0_1_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="microblaze_xbar_0_synth_1" LaunchDir="D:/CAPSTONE FINAL DESIGN/balloon_final/balloon_final.runs/microblaze_xbar_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="microblaze_mem_iface_0_synth_1" LaunchDir="D:/CAPSTONE FINAL DESIGN/balloon_final/balloon_final.runs/microblaze_mem_iface_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="synth_1" LaunchDir="D:/CAPSTONE FINAL DESIGN/balloon_final/balloon_final.runs/synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado">
+		<Parent Id="microblaze_axi_gpio_0_1_synth_1"/>
+		<Parent Id="microblaze_xbar_0_synth_1"/>
+		<Parent Id="microblaze_mem_iface_0_synth_1"/>
+	</Run>
+	<Parameters>
+		<Parameter Name="runs.monitorLSFJobs" Val="true" Type="bool"/>
+	</Parameters>
+</Runs>
+

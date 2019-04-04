@@ -1,0 +1,43 @@
+char name [32];
+	char printline [128];
+	file_no +=1;
+
+   DXSPISDVOL disk(XPAR_PMODSD_0_AXI_LITE_SPI_BASEADDR,
+         XPAR_PMODSD_0_AXI_LITE_SDCS_BASEADDR);
+   DFILE file;
+   sprintf(printline, "\nLFSR: %d ADDR: %d BIT: %d PRINT: %d", rando, addr, bit, print_count);
+   sprintf(name, "%d.txt", file_no);
+   // The drive to mount the SD volume to.
+   // Options are: "0:", "1:", "2:", "3:", "4:"
+   static const char szDriveNbr[] = "0:";
+
+   FRESULT fr;
+   u32 bytesWritten = 0;
+   u32 bytesRead, totalBytesRead;
+   u8 buff[12], *buffptr;
+
+   xil_printf("PmodSD Demo Launched\r\n");
+   // Mount the disk
+   DFATFS::fsmount(disk, szDriveNbr, 1);
+
+   xil_printf("Disk mounted\r\n");
+
+   fr = file.fsopen("place.txt", FA_WRITE | FA_CREATE_ALWAYS);
+   if (fr == FR_OK) {
+      xil_printf("Opened output.txt\r\n");
+
+      fr = file.fswrite(printline, 64, &bytesWritten);
+
+      //write_loc = write_loc + bytesWritten;
+      if (fr == FR_OK);
+         //xil_printf("Write successful\r\n");
+      else;
+         //xil_printf("Write failed\r\n");
+      fr = file.fsclose();
+      if (fr == FR_OK)
+         xil_printf("File close successful\r\n");
+      else
+         xil_printf("File close failed\r\n");
+   } else {
+      xil_printf("Failed to open file to write to\r\n");
+   }

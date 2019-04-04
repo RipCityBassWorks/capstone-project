@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<Runs Version="1" Minor="0">
+	<Run Id="microblaze_axi_gpio_0_1_synth_1" LaunchDir="D:/CAPSTONE FINAL DESIGN/balloon_final/balloon_final.runs/microblaze_axi_gpio_0_1_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="microblaze_xbar_0_synth_1" LaunchDir="D:/CAPSTONE FINAL DESIGN/balloon_final/balloon_final.runs/microblaze_xbar_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="microblaze_microblaze_0_0_synth_1" LaunchDir="D:/CAPSTONE FINAL DESIGN/balloon_final/balloon_final.runs/microblaze_microblaze_0_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="microblaze_dlmb_v10_0_synth_1" LaunchDir="D:/CAPSTONE FINAL DESIGN/balloon_final/balloon_final.runs/microblaze_dlmb_v10_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="microblaze_mdm_1_0_synth_1" LaunchDir="D:/CAPSTONE FINAL DESIGN/balloon_final/balloon_final.runs/microblaze_mdm_1_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="microblaze_lmb_bram_0_synth_1" LaunchDir="D:/CAPSTONE FINAL DESIGN/balloon_final/balloon_final.runs/microblaze_lmb_bram_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="microblaze_ilmb_bram_if_cntlr_0_synth_1" LaunchDir="D:/CAPSTONE FINAL DESIGN/balloon_final/balloon_final.runs/microblaze_ilmb_bram_if_cntlr_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="microblaze_ilmb_v10_0_synth_1" LaunchDir="D:/CAPSTONE FINAL DESIGN/balloon_final/balloon_final.runs/microblaze_ilmb_v10_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado" IsOrderedIPRun="true">
+		<Parent Id="microblaze_dlmb_v10_0_synth_1"/>
+	</Run>
+	<Run Id="microblaze_dlmb_bram_if_cntlr_0_synth_1" LaunchDir="D:/CAPSTONE FINAL DESIGN/balloon_final/balloon_final.runs/microblaze_dlmb_bram_if_cntlr_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="microblaze_rst_clk_wiz_1_100M_0_synth_1" LaunchDir="D:/CAPSTONE FINAL DESIGN/balloon_final/balloon_final.runs/microblaze_rst_clk_wiz_1_100M_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="microblaze_axi_gpio_0_0_synth_1" LaunchDir="D:/CAPSTONE FINAL DESIGN/balloon_final/balloon_final.runs/microblaze_axi_gpio_0_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="microblaze_PmodSD_0_0_synth_1" LaunchDir="D:/CAPSTONE FINAL DESIGN/balloon_final/balloon_final.runs/microblaze_PmodSD_0_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="microblaze_clk_wiz_1_0_synth_1" LaunchDir="D:/CAPSTONE FINAL DESIGN/balloon_final/balloon_final.runs/microblaze_clk_wiz_1_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="synth_1" LaunchDir="D:/CAPSTONE FINAL DESIGN/balloon_final/balloon_final.runs/synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado">
+		<Parent Id="microblaze_axi_gpio_0_1_synth_1"/>
+		<Parent Id="microblaze_xbar_0_synth_1"/>
+		<Parent Id="microblaze_microblaze_0_0_synth_1"/>
+		<Parent Id="microblaze_dlmb_v10_0_synth_1"/>
+		<Parent Id="microblaze_mdm_1_0_synth_1"/>
+		<Parent Id="microblaze_lmb_bram_0_synth_1"/>
+		<Parent Id="microblaze_ilmb_bram_if_cntlr_0_synth_1"/>
+		<Parent Id="microblaze_ilmb_v10_0_synth_1"/>
+		<Parent Id="microblaze_dlmb_bram_if_cntlr_0_synth_1"/>
+		<Parent Id="microblaze_rst_clk_wiz_1_100M_0_synth_1"/>
+		<Parent Id="microblaze_axi_gpio_0_0_synth_1"/>
+		<Parent Id="microblaze_PmodSD_0_0_synth_1"/>
+		<Parent Id="microblaze_clk_wiz_1_0_synth_1"/>
+	</Run>
+	<Parameters>
+		<Parameter Name="runs.monitorLSFJobs" Val="true" Type="bool"/>
+	</Parameters>
+</Runs>
+
