@@ -258,6 +258,7 @@ void SD(int32_t rando, int addr, int bit, int pc) {
 			xil_printf("Disk mounted\r\n");
 			//check if we need to poll the pointer
 			//not sure if this is working properly
+			/*
 			if(first_run == true) {
 				fr = file2.fsopen("pointer.txt", FA_READ);
 				if (fr == FR_OK) {
@@ -282,7 +283,7 @@ void SD(int32_t rando, int addr, int bit, int pc) {
 				   }
 				first_run = false;
 			}
-
+			*///commented for stability 
 			fr = file.fsopen("output.txt", FA_WRITE | FA_OPEN_ALWAYS);
 
 			if (fr == FR_OK) {
