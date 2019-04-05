@@ -7,7 +7,7 @@ Senior Capstone Project FPGA Random Number Generator
 * From Digilent Corp.
 * Xilinx Vivado WebPACK IDE
 
-## Information 
+## Project Information 
 This is the production code for an FPGA based random number generator. <br />
 This is for a senior capstone project with the goal of generating <br />
 truly random number using single event effects from ionizing <br />
