@@ -31,8 +31,7 @@ entity lfsr is
         delay       : in    std_logic;
         reg_in      : in    std_logic_vector(15 downto 0);
         en_out      : out   std_logic;
-        lfsr_out    : out   std_logic_vector(15 downto 0);
-        random_out  : out   std_logic_vector(15 downto 0)
+        lfsr_out    : out   std_logic_vector(15 downto 0)
     );
 end entity lfsr;
 
@@ -57,14 +56,12 @@ begin
             elsif(rising_edge(clk)) then
                 if(en = '1') then
                     shift(count) <= not shift(count);
-                    random_out <= shift;
                     random_flag <= '1';
                 end if;
                 if(delay = '1') then
                     en_out <= random_flag;
-                    xor_out <= shift(10) xor (shift(12) xor (shift(15) xor shift(13)));
+                    shift(15) <= (((shift(0) xor shift(2)) xor shift(3)) xor shift(5));
                     shift(14 downto 0) <= shift(15 downto 1);
-                    shift(15) <= xor_out;
                     lfsr_out <= shift;
                     random_flag <= '0';
                 end if;
@@ -74,9 +71,7 @@ begin
     
     EVENT_COUNTER   :   process(clock, reset) 
         begin
-            if(reset = '1') then
-                count <= 0;
-            elsif(rising_edge(clock)) then
+            if(rising_edge(clock)) then
                 if(count = 15) then
                     count <= 0;
                 else
