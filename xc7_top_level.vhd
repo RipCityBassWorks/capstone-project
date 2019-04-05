@@ -15,22 +15,20 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.all;
 
+
 entity xc7_top_level is
     Port(--Clock signal
         CLK100MHZ           : in    std_logic;
         --Switches
-        sw                  : in    std_logic_vector(15 downto 0);
+        sw                  : in    std_logic_vector(1 downto 0);
         --LEDs
-        led                 : out   std_logic_vector(15 downto 0);
+        led                 : out   std_logic_vector(1 downto 0);
         --Seven Segment Display
-        seg                 : out   std_logic_vector(6 downto 0);
-        dp                  : out   std_logic;
         an                  : out   std_logic_vector(3 downto 0);
-        --Buttons
-        btn                 : in    std_logic_vector(4 downto 0);
-        
-        --PMOD Ports Removed Temp.
-        
+        --PMOD Ports
+        JA                  : in    std_logic_vector(7 downto 0);
+        JB                  : in    std_logic_vector(7 downto 0);
+        JC                  : in    std_logic_vector(7 downto 0);
         --USB-UART Interface
         UART_TXD            : out   std_logic
     );
@@ -38,49 +36,17 @@ end entity xc7_top_level;
 
 architecture xc7_top_level_arch of xc7_top_level is
     
---COMPONENT DECLARATIONS
-    component clock_divider is
-        port(
-            clk_in          : in    std_logic;
-            reset           : in    std_logic;
-            sel             : in    std_logic_vector(1 downto 0);
-            clk_out         : out   std_logic
-        );
-    end component clock_divider;
-    
-    component char_decoder is
-        Port(
-            clk             : in    std_logic;
-            reset           : in    std_logic;
-            anode           : out   std_logic_vector(3 downto 0);
-            dp              : out   std_logic;
-            bin_in          : in    std_logic_vector(15 downto 0);
-            hex_out         : out   std_logic_vector(6 downto 0) 
-        );
-    end component char_decoder;
-    
+--COMPONENT DECLARATIONS    
     component lfsr is
         port(
             clk             : in    std_logic;
-            clock           : in    std_logic;
             reset           : in    std_logic;
             en              : in    std_logic;
-            delay           : in    std_logic;
             reg_in          : in    std_logic_vector(15 downto 0);
             en_out          : out   std_logic;
-            lfsr_out        : out   std_logic_vector(15 downto 0);
-            random_out      : out   std_logic_vector(15 downto 0)
+            lfsr_out        : out   std_logic_vector(15 downto 0)
         );
     end component lfsr;
-    
-    component btn_debounce is 
-        port(
-            clk             : in    std_logic;
-            reset           : in    std_logic;
-            pb_in           : in    std_logic;
-            pb_out          : out   std_logic
-        );
-    end component btn_debounce;
     
     component delay_counter is
         port(
@@ -92,9 +58,9 @@ architecture xc7_top_level_arch of xc7_top_level is
     
     component UART_TX_CTRL is
         port( 
+            CLK             : in    std_logic;
             SEND            : in    std_logic;
             DATA            : in    std_logic_vector(7 downto 0);
-            CLK             : in    std_logic;
             READY           : out   std_logic;
             UART_TX         : out   std_logic
         );
@@ -107,77 +73,28 @@ architecture xc7_top_level_arch of xc7_top_level is
     type UART_STATE_TYPE is (RST_REG, LD_INIT_STR, SEND_CHAR, RDY_LOW, WAIT_RDY, WAIT_BTN, LD_BTN_STR);
     
     --SIGNALS and constants  
-    constant TMR_CNTR_MAX       : std_logic_vector(26 downto 0) := "101111101011110000100000000"; --100,000,000 = clk cycles per second
-    constant TMR_VAL_MAX        : std_logic_vector(3 downto 0) := "1001"; --9
     constant RESET_CNTR_MAX     : std_logic_vector(17 downto 0) := "110000110101000000";-- 100,000,000 * 0.002 = 200,000 = clk cycles per 2 ms
-    constant MAX_STR_LEN        : integer := 34;
-    constant WELCOME_STR_LEN    : natural := 34;
-    constant RESET_STR_LEN      : natural := 21;
-    constant BTN_STR_LEN        : natural := 24;
-    constant COUNT_UP           : integer := 50000;
+    constant MAX_STR_LEN        : integer := 15;
+    constant WELCOME_STR_LEN    : natural := 15;
     
     --UART Welcome Message
-    constant WELCOME_STR        : CHAR_ARRAY(0 to 33) := (
+    constant WELCOME_STR        : CHAR_ARRAY(0 to 14) := (
+                                                            X"0A",  --\n
                                                             X"0A",  --\n
                                                             X"0D",  --\r
-                                                            X"48",  --H
-                                                            X"49",  --I
-                                                            X"47",  --G
-                                                            X"48",  --H
                                                             X"20",  --
-                                                            X"41",  --A
-                                                            X"4C",  --L
-                                                            X"54",  --T
-                                                            X"49",  --I 
-                                                            X"54",  --T
-                                                            X"55",  --U
-                                                            X"44",  --D
-                                                            X"45",  --E
-                                                            X"20",  -- 
-                                                            X"42",  --B
-                                                            X"41",  --A
-                                                            X"4C",  --L
-                                                            X"4C",  --L
-                                                            X"4F",  --O 
-                                                            X"4F",  --O
-                                                            X"4E",  --N
-                                                            X"20",  --
-                                                            X"44",  --D
-                                                            X"45",  --E 
                                                             X"4D",  --M 
-                                                            X"4F",  --O
-                                                            X"20",  -- 
-                                                            X"20",  -- 
-                                                            X"20",  -- 
+                                                            X"53",  --S
+                                                            X"55",  --U
+                                                            X"20",  --
+                                                            X"54",  --T
+                                                            X"52",  --R
+                                                            X"4E",  --N
+                                                            X"47",  --G
                                                             X"0A",  --\n
                                                             X"0A",  --\n
                                                             X"0D"   --\r
                                                         ); 
-                                                        
-    --UART reset message                                                
-    constant RESET_STR          : CHAR_ARRAY(0 to 20) := (
-                                                            X"0A",  --\n
-                                                            X"0D",  --\r
-                                                            X"52",  --R
-                                                            X"45",  --E
-                                                            X"53",  --S
-                                                            X"45",  --E
-                                                            X"54",  --T 
-                                                            X"20",  -- 
-                                                            X"45",  --E
-                                                            X"4E",  --N
-                                                            X"41",  --A
-                                                            X"42",  --B
-                                                            X"4C",  --L
-                                                            X"45",  --E
-                                                            X"44",  --D
-                                                            X"20",  -- 
-                                                            X"20",  -- 
-                                                            X"20",  -- 
-                                                            X"0A",  --\n
-                                                            X"0A",  --\n
-                                                            X"0D"   --\r
-                                                          );
                                                           
     constant NEW_LINE           : CHAR_ARRAY(0 to 1) := (
                                                             X"0A",  --\n
@@ -185,10 +102,16 @@ architecture xc7_top_level_arch of xc7_top_level is
                                                         ); 
                                                 
     constant VERT_LINE          : CHAR_ARRAY(0 to 2) := (
-                                                            X"20",  --space
+                                                            X"20",  --'space'
                                                             X"7C",  --|
                                                             X"20"   --'space'
                                                         ); 
+                                                        
+    constant SPACE              : CHAR_ARRAY(0 to 2) := (
+                                                            X"20",  --'space'
+                                                            X"20",  --'space'
+                                                            X"20"   --'space'
+                                                        );                                                         
                                             
     constant ONE                : CHAR_ARRAY(0 to 2) := (
                                                             X"20",  --'space'
@@ -201,13 +124,18 @@ architecture xc7_top_level_arch of xc7_top_level is
                                                             X"30",  --'0'
                                                             x"20"   --'space' 
                                                         );    
-                                                                                                
-    --UART_TX_CTRL control signals
+														
+    constant RANDOM_NUM         : CHAR_ARRAY(0 to 2) := (
+															X"20",  --'space'
+															X"58",  --'X'
+															x"20"   --'space' 
+														);  
+                                                                                                                                                              
+    --UART_TX_CTRL signals
     signal uartRdy              : std_logic;
     signal uartSend             : std_logic := '0';
     signal uartData             : std_logic_vector (7 downto 0):= "00000000";
     signal uartTX               : std_logic;
-    signal uartCLK              : std_logic;
     signal dataCHAR             : CHAR_ARRAY(0 to 3);   --CHAR_ARRAY to hold output of the LFSR
     signal uartState            : UART_STATE_TYPE := RST_REG;  --Current uart state signal
     signal sendStr              : CHAR_ARRAY(0 to (MAX_STR_LEN - 1));    --Contains the current string being sent over uart.
@@ -218,103 +146,75 @@ architecture xc7_top_level_arch of xc7_top_level is
     
     
 --SIGNALS    
-    signal clock                : std_logic;
-    signal reset                : std_logic                         := sw(3);--ck_rst;
+    signal reset                : std_logic                         := sw(0);
     signal delay                : std_logic;          
-    signal pb_0                 : std_logic;                        --btn(0) debounced 
-    signal event_en             : std_logic                         := pb_0;
+    signal event_en             : std_logic                         := sw(1);
     signal lfsr_out             : std_logic_vector(15 downto 0);
     signal uart_in              : std_logic_vector(31 downto 0);
     signal reg_in               : std_logic_vector(15 downto 0)     := "1010110011100001";  
-    signal random_out           : std_logic_vector(15 downto 0);
     signal random_flag          : std_logic;
-    signal sys_clks_sec         : std_logic_vector(31 downto 0)     := "00000101111101011110000100000000";    
-     
+    
                                                                
 begin    
-   
-    PUSH_BUTTON_ZERO    :   btn_debounce
-        port map(
-            clk             => CLK100MHZ,
-            reset           => reset,
-            pb_in           => btn(0),
-            pb_out          => pb_0
-        );
-   
-    DIVIDE_CLOCK    :   clock_divider   
-        port map(
-            clk_in          => CLK100MHZ, 
-            reset           => reset, 
-            sel             => sw(1 downto 0), 
-            clk_out         => clock
-        );
-    
-    SEVEN_SEGMENT_DISPLAY      :   char_decoder
-        port map(
-            clk             => CLK100MHZ,
-            reset           => reset,
-            anode           => an,
-            dp              => dp,
-            bin_in          => lfsr_out,
-            hex_out         => seg
-        );
+
+
+----------------------------------
+--------LFSR INTERFACE------------
+----------------------------------
     
     SHIFT_REG       :   lfsr
         port map(
             clk             => CLK100MHZ,
-            clock           => clock,
             en              => event_en,
-            delay           => delay,
             reset           => reset,      
             reg_in          => reg_in,  
             en_out          => random_flag, 
-            lfsr_out        => lfsr_out,
-            random_out      => random_out 
+            lfsr_out        => lfsr_out
         );
     
-    TWO_SEC_DELAY  :   delay_counter
+    THIRTY_SEC_DELAY  :   delay_counter
         port map(
             clk             => CLK100MHZ,
             reset           => reset,
             delay_out       => delay
         );
-    
+        
     led <= sw;
-
+    
+    an <= "1111";
 
      
-----------------------------------------------------------
-------              UART Control                   -------
-----------------------------------------------------------
+----------------------------------
+--------UART INTERFACE------------
+----------------------------------
 --Messages are sent on reset and when a button is pressed.
---This counter holds the UART state machine in reset for ~2 milliseconds. This
---will complete transmission of any byte that may have been initiated during 
---FPGA configuration due to the UART_TX line being pulled low, preventing a 
---frame shift error from occuring during the first message.
-
+--This counter holds the UART state machine in reset for ~2 milliseconds. 
+--This will complete transmission of any byte that may have been initiated  
+--during FPGA configuration due to the UART_TX line being pulled low, 
+--preventing a frame shift error from occurring during the first message.
 
     --Component used to send a byte of data over a UART line.
     INST_UART_TX_CTRL   :   UART_TX_CTRL 
         port map(
+            CLK             => CLK100MHZ,
             SEND            => uartSend,
             DATA            => uartData,
-            CLK             => CLK100MHZ,
             READY           => uartRdy,
             UART_TX         => uartTX 
         );
         
-    UART_TMR   :   process(CLK100MHZ)
+    UART_TMR   :   process(CLK100MHZ, reset)
         begin
             if(rising_edge(CLK100MHZ)) then
-                if((reset = '0') and (delay = '1')) then -- top most check, if our timer has reached it's val then we reset the time, toggle the toggle
-                    tmr_tgl <= '1';
+                if((reset = '0') and (delay = '1')) then -- top most check, if our timer has reached it's val then we reset the time, toggle the timer
+                    tmr_tgl <= '1'; 
                 else
                     tmr_tgl <= '0';
                 end if;
             end if;
     end process;
         
-    DATA_ASSIGNMENT :   process(CLK100MHZ)
+    DATA_ASSIGNMENT :   process(CLK100MHZ, reset)
         begin
             if(rising_edge(CLK100MHZ)) then
                 dataCHAR(0) <= uart_in(31 downto 24);
@@ -324,7 +224,7 @@ begin
             end if;
     end process;  
         
-    UART_RESET  :   process(CLK100MHZ)
+    UART_RESET  :   process(CLK100MHZ, reset)
         begin
             if(rising_edge(CLK100MHZ)) then
                 if((reset_cntr = RESET_CNTR_MAX) or (uartState /= RST_REG)) then
@@ -335,8 +235,8 @@ begin
             end if;
     end process;
         
-    --Next Uart state logic (states described above)
-    NEXT_UART_STATE :   process (CLK100MHZ)
+    --Next UART state logic (states described above)
+    NEXT_UART_STATE :   process(CLK100MHZ, reset)
         begin
             if(rising_edge(CLK100MHZ)) then   
                 case uartState is 
@@ -370,9 +270,8 @@ begin
             end if;
     end process;
         
-    --Loads the sendStr and strEnd signals when a LD state is
-    --is reached.
-    STRING_LOAD  :  process(CLK100MHZ)
+    --Loads the sendStr and strEnd signals when a LD state is reached
+    STRING_LOAD  :  process(CLK100MHZ, reset)
         begin
             if(rising_edge(CLK100MHZ)) then
                 if(uartState = LD_INIT_STR) then
@@ -384,23 +283,23 @@ begin
                          sendStr(2 to 4) <= VERT_LINE;
                          sendStr(5 to 8) <= dataCHAR;
                          sendStr(9 to 11) <= VERT_LINE;
-                         sendStr(12 to 14) <= ONE;
-                         sendStr(15 to 17) <= VERT_LINE;
-                         strEnd <= 18;
+                         sendStr(12 to 14) <= RANDOM_NUM;
+                         strEnd <= 15;
                      elsif(reset = '0') then
                         sendStr(0 to 1) <= NEW_LINE;
                         sendStr(2 to 4) <= VERT_LINE;
-                        sendStr(5 to 8)<= dataCHAR;
-                        sendStr(9 to 11)<= VERT_LINE;
-                        strEnd <= 12;
+                        sendStr(5 to 8) <= dataCHAR;
+                        sendStr(9 to 11) <= VERT_LINE;
+                        sendStr(12 to 14) <= SPACE;
+                        strEnd <= 15;
                     end if;
                 end if;
             end if;
     end process;
         
-    --Conrols the strIndex signal so that it contains the index
-    --of the next character that needs to be sent over uart
-    CHAR_COUNT  :   process (CLK100MHZ)
+    --Controls the strIndex signal so that it contains the index
+    --of the next character that needs to be sent over UART
+    CHAR_COUNT  :   process(CLK100MHZ, reset)
         begin
             if(rising_edge(CLK100MHZ)) then
                 if(uartState = LD_INIT_STR or uartState = LD_BTN_STR) then
@@ -412,7 +311,7 @@ begin
     end process;
         
     --Controls the UART_TX_CTRL signals
-    CHAR_LOAD   :   process(CLK100MHZ)
+    CHAR_LOAD   :   process(CLK100MHZ, reset)
         begin
             if (rising_edge(CLK100MHZ)) then
                 if(uartState = SEND_CHAR) then 
@@ -424,7 +323,7 @@ begin
             end if;
     end process;
     
-    CONVERT_TO_HEX  :   process(CLK100MHZ, LFSR_out)
+    CONVERT_TO_HEX  :   process(CLK100MHZ, reset, LFSR_out)
         begin
             if(rising_edge(CLK100MHZ)) then
                 case LFSR_out(15 downto 12) is
@@ -505,7 +404,6 @@ begin
         end if;
     end process;
         
-   
     UART_TXD <= uartTX;
                    
     
