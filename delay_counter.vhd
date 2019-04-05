@@ -7,8 +7,8 @@
 -- Project Name: capstone-fpga-memory-model
 -- Target Devices: XC7A35TICSG324-1L
 -- Tool Versions: Vivado 2018.2
--- Description: 2 second delay counter used for updating 
--- the LFSR and sending new data to the UART
+-- Description: 30 second delay counter used 
+-- for sending the data stream to the UART
 -- Component of xc7_top_level.vhd
 ----------------------------------------------------------------------------------
 
@@ -26,22 +26,25 @@ entity delay_counter is
 end entity delay_counter;
 
 architecture delay_counter_arch of delay_counter is
+
+--SIGNALS    
+    signal cnt          : unsigned(31 downto 0);
+    signal cnt_max      : unsigned(31 downto 0)     := "10110010110100000101111000000000"; --30s delay
     
-    signal cnt_int      : integer;
-    signal delay_int    : integer   := 200000000;
     
 begin
+    
     
     DELAY_COUNT :   process(clk, reset)
         begin
             if(reset = '1') then
-                cnt_int <= 0;
+                cnt <= X"00000000";
             elsif(rising_edge(clk)) then
-                if(cnt_int = (delay_int - 1)) then
-                    cnt_int <= 0;
+                if(cnt = cnt_max) then
+                    cnt <= X"00000000";
                     delay_out <= '1';
                 else
-                    cnt_int <= cnt_int + 1;
+                    cnt <= cnt + 1;
                     delay_out <= '0';
                 end if;
             end if;
