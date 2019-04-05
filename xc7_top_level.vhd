@@ -15,6 +15,10 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.all;
 
+Library UNISIM;
+use UNISIM.vcomponents.all;
+
+
 entity xc7_top_level is
     Port(--Clock signal
         CLK100MHZ           : in    std_logic;
@@ -29,7 +33,11 @@ entity xc7_top_level is
         --Buttons
         btn                 : in    std_logic_vector(4 downto 0);
         
-        --PMOD Ports Removed Temp.
+        --PMOD Ports
+        JA                  : in    std_logic_vector(7 downto 0);
+        JB                  : in    std_logic_vector(7 downto 0);
+        JC                  : in    std_logic_vector(7 downto 0);
+        JXADC               : in    std_logic_vector(7 downto 0);   --used for analog to digital conversion
         
         --USB-UART Interface
         UART_TXD            : out   std_logic
@@ -68,8 +76,7 @@ architecture xc7_top_level_arch of xc7_top_level is
             delay           : in    std_logic;
             reg_in          : in    std_logic_vector(15 downto 0);
             en_out          : out   std_logic;
-            lfsr_out        : out   std_logic_vector(15 downto 0);
-            random_out      : out   std_logic_vector(15 downto 0)
+            lfsr_out        : out   std_logic_vector(15 downto 0)
         );
     end component lfsr;
     
@@ -92,9 +99,9 @@ architecture xc7_top_level_arch of xc7_top_level is
     
     component UART_TX_CTRL is
         port( 
+            CLK             : in    std_logic;
             SEND            : in    std_logic;
             DATA            : in    std_logic_vector(7 downto 0);
-            CLK             : in    std_logic;
             READY           : out   std_logic;
             UART_TX         : out   std_logic
         );
@@ -153,31 +160,6 @@ architecture xc7_top_level_arch of xc7_top_level is
                                                             X"0A",  --\n
                                                             X"0D"   --\r
                                                         ); 
-                                                        
-    --UART reset message                                                
-    constant RESET_STR          : CHAR_ARRAY(0 to 20) := (
-                                                            X"0A",  --\n
-                                                            X"0D",  --\r
-                                                            X"52",  --R
-                                                            X"45",  --E
-                                                            X"53",  --S
-                                                            X"45",  --E
-                                                            X"54",  --T 
-                                                            X"20",  -- 
-                                                            X"45",  --E
-                                                            X"4E",  --N
-                                                            X"41",  --A
-                                                            X"42",  --B
-                                                            X"4C",  --L
-                                                            X"45",  --E
-                                                            X"44",  --D
-                                                            X"20",  -- 
-                                                            X"20",  -- 
-                                                            X"20",  -- 
-                                                            X"0A",  --\n
-                                                            X"0A",  --\n
-                                                            X"0D"   --\r
-                                                          );
                                                           
     constant NEW_LINE           : CHAR_ARRAY(0 to 1) := (
                                                             X"0A",  --\n
@@ -201,8 +183,14 @@ architecture xc7_top_level_arch of xc7_top_level is
                                                             X"30",  --'0'
                                                             x"20"   --'space' 
                                                         );    
-                                                                                                
-    --UART_TX_CTRL control signals
+														
+    constant RANDOM_NUM         : CHAR_ARRAY(0 to 2) := (
+															X"20",  --'space'
+															X"58",  --'X'
+															x"20"   --'space' 
+														);  
+                                                                                                                                                              
+    --UART_TX_CTRL signals
     signal uartRdy              : std_logic;
     signal uartSend             : std_logic := '0';
     signal uartData             : std_logic_vector (7 downto 0):= "00000000";
@@ -215,32 +203,34 @@ architecture xc7_top_level_arch of xc7_top_level is
     signal strIndex             : natural;   --Contains the index of the next character to be sent over uart within the sendStr variable.     
     signal reset_cntr           : std_logic_vector (17 downto 0) := (others=>'0');  --this counter counts the amount of time paused in the UART reset state
     signal tmr_tgl              : std_logic;   --Toggle bit for UART timing
+
+
+--XADC SIGNALS
+    signal reading : std_logic_vector(15 downto 0) := (others => '0');
+    signal muxaddr : std_logic_vector( 4 downto 0) := (others => '0');
+    signal channel : std_logic_vector( 4 downto 0) := (others => '0');
+    signal vauxn   : std_logic_vector(15 downto 0) := (others => '0');
+    signal vauxp   : std_logic_vector(15 downto 0) := (others => '0');
     
     
 --SIGNALS    
     signal clock                : std_logic;
-    signal reset                : std_logic                         := sw(3);--ck_rst;
+    signal reset                : std_logic                         := sw(3);
     signal delay                : std_logic;          
-    signal pb_0                 : std_logic;                        --btn(0) debounced 
-    signal event_en             : std_logic                         := pb_0;
+    signal event_en             : std_logic;
     signal lfsr_out             : std_logic_vector(15 downto 0);
     signal uart_in              : std_logic_vector(31 downto 0);
     signal reg_in               : std_logic_vector(15 downto 0)     := "1010110011100001";  
-    signal random_out           : std_logic_vector(15 downto 0);
     signal random_flag          : std_logic;
-    signal sys_clks_sec         : std_logic_vector(31 downto 0)     := "00000101111101011110000100000000";    
-     
+    
                                                                
 begin    
-   
-    PUSH_BUTTON_ZERO    :   btn_debounce
-        port map(
-            clk             => CLK100MHZ,
-            reset           => reset,
-            pb_in           => btn(0),
-            pb_out          => pb_0
-        );
-   
+
+
+----------------------------------
+--------LFSR INTERFACE------------
+----------------------------------
+
     DIVIDE_CLOCK    :   clock_divider   
         port map(
             clk_in          => CLK100MHZ, 
@@ -268,8 +258,7 @@ begin
             reset           => reset,      
             reg_in          => reg_in,  
             en_out          => random_flag, 
-            lfsr_out        => lfsr_out,
-            random_out      => random_out 
+            lfsr_out        => lfsr_out
         );
     
     TWO_SEC_DELAY  :   delay_counter
@@ -279,42 +268,131 @@ begin
             delay_out       => delay
         );
     
-    led <= sw;
+    
+----------------------------------
+--------XADC INTERFACE------------
+----------------------------------
+    
+    vauxp(6)  <= jxadc(0);  vauxn(6)  <= jxadc(4);
+    vauxp(14) <= jxadc(1);  vauxn(14) <= jxadc(5);
+    vauxp(7)  <= jxadc(2);  vauxn(7)  <= jxadc(6);
+    vauxp(15) <= jxadc(3);  vauxn(15) <= jxadc(7);
+    
+    XADC_inst   :   XADC
+        generic map(
+            -- INIT_40 - INIT_42: XADC configuration registers
+            INIT_40 => X"9000", -- averaging of 16 selected for external channels
+            INIT_41 => X"2ef0", -- Continuous Seq Mode, Disable unused ALMs, Enable calibration
+            INIT_42 => X"0800", -- ACLK = DCLK/8 = 100MHz / 8 = 12.5 MHz 
+            -- INIT_48 - INIT_4F: Sequence Registers
+            INIT_48 => X"4701", -- CHSEL1 - enable Temp VCCINT, VCCAUX, VCCBRAM, and calibration
+            INIT_49 => X"000CC", -- CHSEL2 - enable aux analog channels 6,7,14,15
+            INIT_4A => X"0000", -- SEQAVG1 disabled all channels
+            INIT_4B => X"0000", -- SEQAVG2 disabled all channels
+            INIT_4C => X"0000", -- SEQINMODE0 - The lowest 16 channels are bipolar
+            INIT_4D => X"00CC", -- SEQINMODE1 - Channels 6, 7, 14 & 15 are unipolar
+            INIT_4E => X"0000", -- SEQACQ0 - No extra settling time all channels
+            INIT_4F => X"0000", -- SEQACQ1 - No extra settling time all channels
+            -- INIT_50 - INIT_58, INIT5C: Alarm Limit Registers
+            INIT_50 => X"b5ed", -- Temp upper alarm trigger 85°C
+            INIT_51 => X"5999", -- Vccint upper alarm limit 1.05V
+            INIT_52 => X"A147", -- Vccaux upper alarm limit 1.89V
+            INIT_53 => X"dddd", -- OT upper alarm limit 125°C - see Thermal Management
+            INIT_54 => X"a93a", -- Temp lower alarm reset 60°C
+            INIT_55 => X"5111", -- Vccint lower alarm limit 0.95V
+            INIT_56 => X"91Eb", -- Vccaux lower alarm limit 1.71V
+            INIT_57 => X"ae4e", -- OT lower alarm reset 70°C - see Thermal Management
+            INIT_58 => X"5999", -- VCCBRAM upper alarm limit 1.05V
+            INIT_5C => X"5111", -- VCCBRAM lower alarm limit 0.95V
 
+            -- Simulation attributes: Set for proper simulation behavior
+            SIM_DEVICE       => "7SERIES",    -- Select target device (values)
+            SIM_MONITOR_FILE => "design.txt"  -- Analog simulation data file name
+        ) port map(
+            -- ALARMS: 8-bit (each) output: ALM, OT
+            ALM          => open,             -- 8-bit output: Output alarm for temp, Vccint, Vccaux and Vccbram
+            OT           => open,             -- 1-bit output: Over-Temperature alarm
+            
+            -- STATUS: 1-bit (each) output: XADC status ports
+            BUSY         => open,             -- 1-bit output: ADC busy output
+            CHANNEL      => channel,          -- 5-bit output: Channel selection outputs
+            EOC          => open,             -- 1-bit output: End of Conversion
+            EOS          => open,             -- 1-bit output: End of Sequence
+            JTAGBUSY     => open,             -- 1-bit output: JTAG DRP transaction in progress output
+            JTAGLOCKED   => open,             -- 1-bit output: JTAG requested DRP port lock
+            JTAGMODIFIED => open,             -- 1-bit output: JTAG Write to the DRP has occurred
+            MUXADDR      => muxaddr,          -- 5-bit output: External MUX channel decode
+            
+            -- Auxiliary Analog-Input Pairs: 16-bit (each) input: VAUXP[15:0], VAUXN[15:0]
+            VAUXN        => vauxn,            -- 16-bit input: N-side auxiliary analog input
+            VAUXP        => vauxp,            -- 16-bit input: P-side auxiliary analog input
+            
+            -- CONTROL and CLOCK: 1-bit (each) input: Reset, conversion start and clock inputs
+            CONVST       => '0',              -- 1-bit input: Convert start input
+            CONVSTCLK    => '0',              -- 1-bit input: Convert start input
+            RESET        => '0',              -- 1-bit input: Active-high reset
+            
+            -- Dedicated Analog Input Pair: 1-bit (each) input: VP/VN
+            VN           => '0', -- 1-bit input: N-side analog input
+            VP           => '0', -- 1-bit input: P-side analog input
+            
+            -- Dynamic Reconfiguration Port (DRP) -- hard set to read channel 6 (XADC4/XADC0)
+            DO           => reading,
+            DRDY         => open,
+            DADDR        => "0010110",  -- The address for reading AUX channel 6
+            DCLK         => CLK100MHZ,
+            DEN          => '1',
+            DI           => (others => '0'),
+            DWE          => '0'
+        );
+       
+    EVENT_DETECT    :   process(CLK100MHZ, reset, reading) is
+        begin
+            if(rising_edge(CLK100MHZ)) then
+                if(reset = '1') then
+                    event_en <= '0';
+                elsif((reading(14) = '1') and (reading(15) = '0')) then
+                    event_en <= '1';
+                else
+                    event_en <= '0';
+                end if;
+            end if;
+    end process;
+        
+    led <= reading;
 
      
-----------------------------------------------------------
-------              UART Control                   -------
-----------------------------------------------------------
+----------------------------------
+--------UART INTERFACE------------
+----------------------------------
 --Messages are sent on reset and when a button is pressed.
---This counter holds the UART state machine in reset for ~2 milliseconds. This
---will complete transmission of any byte that may have been initiated during 
---FPGA configuration due to the UART_TX line being pulled low, preventing a 
---frame shift error from occuring during the first message.
-
+--This counter holds the UART state machine in reset for ~2 milliseconds. 
+--This will complete transmission of any byte that may have been initiated  
+--during FPGA configuration due to the UART_TX line being pulled low, 
+--preventing a frame shift error from occurring during the first message.
 
     --Component used to send a byte of data over a UART line.
     INST_UART_TX_CTRL   :   UART_TX_CTRL 
         port map(
+            CLK             => CLK100MHZ,
             SEND            => uartSend,
             DATA            => uartData,
-            CLK             => CLK100MHZ,
             READY           => uartRdy,
             UART_TX         => uartTX 
         );
         
-    UART_TMR   :   process(CLK100MHZ)
+    UART_TMR   :   process(CLK100MHZ, reset)
         begin
             if(rising_edge(CLK100MHZ)) then
-                if((reset = '0') and (delay = '1')) then -- top most check, if our timer has reached it's val then we reset the time, toggle the toggle
-                    tmr_tgl <= '1';
+                if((reset = '0') and (delay = '1')) then -- top most check, if our timer has reached it's val then we reset the time, toggle the timer
+                    tmr_tgl <= '1'; 
                 else
                     tmr_tgl <= '0';
                 end if;
             end if;
     end process;
         
-    DATA_ASSIGNMENT :   process(CLK100MHZ)
+    DATA_ASSIGNMENT :   process(CLK100MHZ, reset)
         begin
             if(rising_edge(CLK100MHZ)) then
                 dataCHAR(0) <= uart_in(31 downto 24);
@@ -324,7 +402,7 @@ begin
             end if;
     end process;  
         
-    UART_RESET  :   process(CLK100MHZ)
+    UART_RESET  :   process(CLK100MHZ, reset)
         begin
             if(rising_edge(CLK100MHZ)) then
                 if((reset_cntr = RESET_CNTR_MAX) or (uartState /= RST_REG)) then
@@ -335,8 +413,8 @@ begin
             end if;
     end process;
         
-    --Next Uart state logic (states described above)
-    NEXT_UART_STATE :   process (CLK100MHZ)
+    --Next UART state logic (states described above)
+    NEXT_UART_STATE :   process(CLK100MHZ, reset)
         begin
             if(rising_edge(CLK100MHZ)) then   
                 case uartState is 
@@ -370,9 +448,8 @@ begin
             end if;
     end process;
         
-    --Loads the sendStr and strEnd signals when a LD state is
-    --is reached.
-    STRING_LOAD  :  process(CLK100MHZ)
+    --Loads the sendStr and strEnd signals when a LD state is reached
+    STRING_LOAD  :  process(CLK100MHZ, reset)
         begin
             if(rising_edge(CLK100MHZ)) then
                 if(uartState = LD_INIT_STR) then
@@ -384,7 +461,7 @@ begin
                          sendStr(2 to 4) <= VERT_LINE;
                          sendStr(5 to 8) <= dataCHAR;
                          sendStr(9 to 11) <= VERT_LINE;
-                         sendStr(12 to 14) <= ONE;
+                         sendStr(12 to 14) <= RANDOM_NUM;
                          sendStr(15 to 17) <= VERT_LINE;
                          strEnd <= 18;
                      elsif(reset = '0') then
@@ -398,9 +475,9 @@ begin
             end if;
     end process;
         
-    --Conrols the strIndex signal so that it contains the index
-    --of the next character that needs to be sent over uart
-    CHAR_COUNT  :   process (CLK100MHZ)
+    --Controls the strIndex signal so that it contains the index
+    --of the next character that needs to be sent over UART
+    CHAR_COUNT  :   process(CLK100MHZ, reset)
         begin
             if(rising_edge(CLK100MHZ)) then
                 if(uartState = LD_INIT_STR or uartState = LD_BTN_STR) then
@@ -412,7 +489,7 @@ begin
     end process;
         
     --Controls the UART_TX_CTRL signals
-    CHAR_LOAD   :   process(CLK100MHZ)
+    CHAR_LOAD   :   process(CLK100MHZ, reset)
         begin
             if (rising_edge(CLK100MHZ)) then
                 if(uartState = SEND_CHAR) then 
@@ -424,7 +501,7 @@ begin
             end if;
     end process;
     
-    CONVERT_TO_HEX  :   process(CLK100MHZ, LFSR_out)
+    CONVERT_TO_HEX  :   process(CLK100MHZ, reset, LFSR_out)
         begin
             if(rising_edge(CLK100MHZ)) then
                 case LFSR_out(15 downto 12) is
@@ -505,7 +582,6 @@ begin
         end if;
     end process;
         
-   
     UART_TXD <= uartTX;
                    
     
