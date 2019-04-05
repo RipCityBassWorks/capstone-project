@@ -9,7 +9,7 @@
 --	This component may be used to transfer data over a UART device. It will
 -- serialize a byte of data and transmit it over a TXD line. The serialized
 -- data has the following characteristics:
---         *9600 Baud Rate
+--         *115200 Baud Rate
 --         *8 data bits, LSB first
 --         *1 stop bit
 --         *no parity
@@ -34,16 +34,17 @@
 ----------------------------------------------------------------------------
 -- Revision History:
 --  08/08/2011(SamB): Created using Xilinx Tools 13.2
+--	04/04/2019 (Stefan Andersson): Modified using Vivado 2018.2
 ----------------------------------------------------------------------------
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.std_logic_unsigned.all;
 
 entity UART_TX_CTRL is
-    Port(
+    port(
+        CLK         : in    std_logic;
         SEND        : in    std_logic;
         DATA        : in    std_logic_vector(7 downto 0);
-        CLK         : in    std_logic;
         READY       : out   std_logic;
         UART_TX     : out   std_logic
     );
@@ -53,15 +54,15 @@ architecture Behavioral of UART_TX_CTRL is
 
     type TX_STATE_TYPE is (RDY, LOAD_BIT, SEND_BIT);
     
-    constant BIT_TMR_MAX        : std_logic_vector(13 downto 0) := "10100010110000"; --10416 = (round(100MHz / 9600)) - 1
+    constant BIT_TMR_MAX        : std_logic_vector(13 downto 0) := "00001101100011";--"10100010110000"; --867 = (round(100MHz / 115200)) - 1
     constant BIT_INDEX_MAX      : natural := 10;
     
     --Counter that keeps track of the number of clock cycles the current bit has been held stable over the
-    --UART TX line. It is used to signal when the ne
+    --UART TX line. It is used to signal when the next bit is sent
     signal bitTmr               : std_logic_vector(13 downto 0) := (others => '0');
     
     --combinatorial logic that goes high when bitTmr has counted to the proper value to ensure
-    --a 9600 baud rate
+    --a 115200 baud rate
     signal bitDone              : std_logic;
     
     --Contains the index of the next bit in txData that needs to be transferred 
@@ -102,7 +103,7 @@ begin
             end if;
     end process;
 
-    bit_timing_process : process (CLK)
+    bit_timing_process  :   process(CLK)
         begin
             if (rising_edge(CLK)) then
                 if (txState = RDY) then
@@ -120,7 +121,7 @@ begin
     bitDone <= '1' when (bitTmr = BIT_TMR_MAX) else
                     '0';
 
-    bit_counting_process : process (CLK)
+    bit_counting_process    :   process(CLK)
         begin
             if (rising_edge(CLK)) then
                 if (txState = RDY) then
@@ -131,7 +132,7 @@ begin
             end if;
     end process;
 
-    tx_data_latch_process : process (CLK)
+    tx_data_latch_process   :   process(CLK)
         begin
             if (rising_edge(CLK)) then
                 if (SEND = '1') then
@@ -140,7 +141,7 @@ begin
             end if;
     end process;
 
-    tx_bit_process : process (CLK)
+    tx_bit_process  :   process(CLK)
         begin
             if (rising_edge(CLK)) then
                 if (txState = RDY) then
