@@ -13,7 +13,7 @@ This is for a senior capstone project with the goal of generating <br />
 truly random number using single event effects from ionizing <br />
 radiation in the upper atmosphere. The FPGA system will be sent <br />
 to the upper atmosphere on a high altitude balloon. <br />
-This project contains <br />
+#### This project contains 
 	* MicroBlaze soft-processor
 	* Massive memory blocks
 	* Triplicated MicroSD cards through the Digilent PMOD interface
