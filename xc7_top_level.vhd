@@ -47,15 +47,6 @@ end entity xc7_top_level;
 architecture xc7_top_level_arch of xc7_top_level is
     
 --COMPONENT DECLARATIONS
-    component clock_divider is
-        port(
-            clk_in          : in    std_logic;
-            reset           : in    std_logic;
-            sel             : in    std_logic_vector(1 downto 0);
-            clk_out         : out   std_logic
-        );
-    end component clock_divider;
-    
     component char_decoder is
         Port(
             clk             : in    std_logic;
@@ -70,7 +61,6 @@ architecture xc7_top_level_arch of xc7_top_level is
     component lfsr is
         port(
             clk             : in    std_logic;
-            clock           : in    std_logic;
             reset           : in    std_logic;
             en              : in    std_logic;
             delay           : in    std_logic;
@@ -79,15 +69,6 @@ architecture xc7_top_level_arch of xc7_top_level is
             lfsr_out        : out   std_logic_vector(15 downto 0)
         );
     end component lfsr;
-    
-    component btn_debounce is 
-        port(
-            clk             : in    std_logic;
-            reset           : in    std_logic;
-            pb_in           : in    std_logic;
-            pb_out          : out   std_logic
-        );
-    end component btn_debounce;
     
     component delay_counter is
         port(
@@ -114,19 +95,14 @@ architecture xc7_top_level_arch of xc7_top_level is
     type UART_STATE_TYPE is (RST_REG, LD_INIT_STR, SEND_CHAR, RDY_LOW, WAIT_RDY, WAIT_BTN, LD_BTN_STR);
     
     --SIGNALS and constants  
-    constant TMR_CNTR_MAX       : std_logic_vector(26 downto 0) := "101111101011110000100000000"; --100,000,000 = clk cycles per second
-    constant TMR_VAL_MAX        : std_logic_vector(3 downto 0) := "1001"; --9
     constant RESET_CNTR_MAX     : std_logic_vector(17 downto 0) := "110000110101000000";-- 100,000,000 * 0.002 = 200,000 = clk cycles per 2 ms
     constant MAX_STR_LEN        : integer := 34;
     constant WELCOME_STR_LEN    : natural := 34;
-    constant RESET_STR_LEN      : natural := 21;
-    constant BTN_STR_LEN        : natural := 24;
-    constant COUNT_UP           : integer := 50000;
     
     --UART Welcome Message
     constant WELCOME_STR        : CHAR_ARRAY(0 to 33) := (
-                                                            X"0A",  --\n
                                                             X"0D",  --\r
+                                                            X"0A",  --\n
                                                             X"48",  --H
                                                             X"49",  --I
                                                             X"47",  --G
@@ -155,20 +131,26 @@ architecture xc7_top_level_arch of xc7_top_level is
                                                             X"4F",  --O
                                                             X"20",  -- 
                                                             X"20",  -- 
-                                                            X"20",  -- 
+                                                            X"0D",  --\r
                                                             X"0A",  --\n
-                                                            X"0A",  --\n
-                                                            X"0D"   --\r
-                                                        ); 
+                                                            X"0D",  --\r
+                                                            X"0A"   --\n
+                                                        );
                                                           
     constant NEW_LINE           : CHAR_ARRAY(0 to 1) := (
-                                                            X"0A",  --\n
-                                                            X"0D"   --\r  
+                                                            X"0D",  --\r 
+                                                            X"0A"   --\n 
                                                         ); 
                                                 
     constant VERT_LINE          : CHAR_ARRAY(0 to 2) := (
                                                             X"20",  --space
                                                             X"7C",  --|
+                                                            X"20"   --'space'
+                                                        ); 
+                                                        
+    constant SPACE              : CHAR_ARRAY(0 to 2) := (
+                                                            X"20",  --'space'
+                                                            X"20",  --'space'
                                                             X"20"   --'space'
                                                         ); 
                                             
@@ -195,7 +177,6 @@ architecture xc7_top_level_arch of xc7_top_level is
     signal uartSend             : std_logic := '0';
     signal uartData             : std_logic_vector (7 downto 0):= "00000000";
     signal uartTX               : std_logic;
-    signal uartCLK              : std_logic;
     signal dataCHAR             : CHAR_ARRAY(0 to 3);   --CHAR_ARRAY to hold output of the LFSR
     signal uartState            : UART_STATE_TYPE := RST_REG;  --Current uart state signal
     signal sendStr              : CHAR_ARRAY(0 to (MAX_STR_LEN - 1));    --Contains the current string being sent over uart.
@@ -217,11 +198,11 @@ architecture xc7_top_level_arch of xc7_top_level is
     signal clock                : std_logic;
     signal reset                : std_logic                         := sw(3);
     signal delay                : std_logic;          
-    signal event_en             : std_logic;
+    signal event_en             : std_logic;                                                --Toggles depending on the value from the XADC
     signal lfsr_out             : std_logic_vector(15 downto 0);
     signal uart_in              : std_logic_vector(31 downto 0);
-    signal reg_in               : std_logic_vector(15 downto 0)     := "1010110011100001";  
-    signal random_flag          : std_logic;
+    signal reg_in               : std_logic_vector(15 downto 0)     := "1010110011100001";  --the seed for the LFSR: 0xACE1
+    signal random_flag          : std_logic;                                                --flag to indicate an event
     
                                                                
 begin    
@@ -231,15 +212,8 @@ begin
 --------LFSR INTERFACE------------
 ----------------------------------
 
-    DIVIDE_CLOCK    :   clock_divider   
-        port map(
-            clk_in          => CLK100MHZ, 
-            reset           => reset, 
-            sel             => sw(1 downto 0), 
-            clk_out         => clock
-        );
     
-    SEVEN_SEGMENT_DISPLAY      :   char_decoder
+    SEVEN_SEGMENT_DISPLAY      :   char_decoder     --Component that controls the four 7-segment displays of the Basys Board
         port map(
             clk             => CLK100MHZ,
             reset           => reset,
@@ -249,10 +223,9 @@ begin
             hex_out         => seg
         );
     
-    SHIFT_REG       :   lfsr
+    SHIFT_REG       :   lfsr            --Linear Feedback Shift Register with enable modifier
         port map(
             clk             => CLK100MHZ,
-            clock           => clock,
             en              => event_en,
             delay           => delay,
             reset           => reset,      
@@ -261,7 +234,7 @@ begin
             lfsr_out        => lfsr_out
         );
     
-    TWO_SEC_DELAY  :   delay_counter
+    TWO_SEC_DELAY  :   delay_counter        --Sets the timing for the LFSR and UART
         port map(
             clk             => CLK100MHZ,
             reset           => reset,
@@ -351,7 +324,7 @@ begin
             if(rising_edge(CLK100MHZ)) then
                 if(reset = '1') then
                     event_en <= '0';
-                elsif((reading(14) = '1') and (reading(15) = '0')) then
+                elsif((reading(14) = '1') and (reading(15) = '0')) then     --The threshold for the laser pointer. Bit 15 will only ever equal one on startup
                     event_en <= '1';
                 else
                     event_en <= '0';
@@ -359,7 +332,7 @@ begin
             end if;
     end process;
         
-    led <= reading;
+    led <= reading;         --Display the value of the XADC on the LEDs
 
      
 ----------------------------------
@@ -380,7 +353,8 @@ begin
             READY           => uartRdy,
             UART_TX         => uartTX 
         );
-        
+    
+    --Checks the system reset state and times data transmission for every 2 seconds    
     UART_TMR   :   process(CLK100MHZ, reset)
         begin
             if(rising_edge(CLK100MHZ)) then
@@ -391,7 +365,8 @@ begin
                 end if;
             end if;
     end process;
-        
+    
+    --Each byte of data for the current transmission is assigned to the corresponding dataCHAR    
     DATA_ASSIGNMENT :   process(CLK100MHZ, reset)
         begin
             if(rising_edge(CLK100MHZ)) then
@@ -401,7 +376,8 @@ begin
                 dataChar(3) <= uart_in(7 downto 0);
             end if;
     end process;  
-        
+    
+    --Reset condition for the UART to prevent hangs    
     UART_RESET  :   process(CLK100MHZ, reset)
         begin
             if(rising_edge(CLK100MHZ)) then
@@ -457,19 +433,19 @@ begin
                     strEnd <= WELCOME_STR_LEN;
                 elsif(uartState = LD_BTN_STR) then
                      if((reset = '0') and (random_flag = '1')) then
-                         sendStr(0 to 1) <= NEW_LINE;
-                         sendStr(2 to 4) <= VERT_LINE;
-                         sendStr(5 to 8) <= dataCHAR;
-                         sendStr(9 to 11) <= VERT_LINE;
-                         sendStr(12 to 14) <= RANDOM_NUM;
-                         sendStr(15 to 17) <= VERT_LINE;
-                         strEnd <= 18;
+                        sendStr(0 to 1) <= NEW_LINE;
+                        sendStr(2 to 4) <= VERT_LINE;
+                        sendStr(5 to 8) <= dataCHAR;
+                        sendStr(9 to 11) <= VERT_LINE;
+                        sendStr(12 to 14) <= RANDOM_NUM;
+                        strEnd <= 15;
                      elsif(reset = '0') then
                         sendStr(0 to 1) <= NEW_LINE;
                         sendStr(2 to 4) <= VERT_LINE;
-                        sendStr(5 to 8)<= dataCHAR;
-                        sendStr(9 to 11)<= VERT_LINE;
-                        strEnd <= 12;
+                        sendStr(5 to 8) <= dataCHAR;
+                        sendStr(9 to 11) <= VERT_LINE;
+                        sendStr(12 to 14) <= SPACE;
+                        strEnd <= 15;
                     end if;
                 end if;
             end if;
@@ -501,6 +477,8 @@ begin
             end if;
     end process;
     
+    --Converts each set of 4 bits from the LFSR to the ASCII representation of hexadacimal
+    --These values will be sent over UART
     CONVERT_TO_HEX  :   process(CLK100MHZ, reset, LFSR_out)
         begin
             if(rising_edge(CLK100MHZ)) then
@@ -582,7 +560,7 @@ begin
         end if;
     end process;
         
-    UART_TXD <= uartTX;
+    UART_TXD <= uartTX;     --Data will be sent over UART 1 byte at a time
                    
     
 end xc7_top_level_arch;
