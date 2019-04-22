@@ -10,18 +10,17 @@ Senior Capstone Project FPGA Random Number Generator
 ## Project Information 
 This is a functionality demonstration for the FPGA based random number generator <br />
 senior capstone project. This branch is a modification of the master branch to <br />
-allow a functionality demonstration using a corresponding Java/Python computer <br />
-program.
+allow a functionality demonstration using a corresponding Python computer program. 
+
+## Download
+To download the complete project simply click on 'design-demonstration.zip' <br />
+and click the 'download' button. Extract the project by right clicking on <br />
+the .zip file and click 'Extract All...'. The project can then be opened in <br />
+Vivado WebPack IDE
 
 ## Function
 #### Reset 
 	* Set to sw(3) = 1 (active high)
-#### Clock Frequency
-	* User selectable at 2Hz, 5Hz, 10Hz, or 100Hz via sw(0) and sw(1)
-	1. 2Hz selected at sw(0) = 0 and sw(1) = 0
-	2. 5Hz selected at sw(0) = 1 and sw(1) = 0
-	3. 10Hz selected at sw(0) = 0 and sw(1) = 1
-	4. 100Hz selected at sw(0) = 1 and sw(1) = 1
 #### LFSR (Linear Feedback Shift Register)
 	* Initialized with an arbitrary 16 bit binary value
 	* LFSR continuously updates with a 2 second delay between values
@@ -53,10 +52,6 @@ Top level VHDL file <br />
 Pin I/O and component declarations <br />
 UART interface is initialized here <br />
 XADC interface is initialized here <br />
-
-### clock_divider.vhd
-STATUS: complete <br />
-User selectable clock frequency <br />
 
 ### char_decoder.vhd
 STATUS: complete <br />
