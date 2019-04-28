@@ -79,9 +79,8 @@ architecture xc7_top_level_arch of xc7_top_level is
     
     --UART Welcome Message
     constant WELCOME_STR        : CHAR_ARRAY(0 to 14) := (
-                                                            X"0A",  --\n
-                                                            X"0A",  --\n
                                                             X"0D",  --\r
+                                                            X"0A",  --\n
                                                             X"20",  --
                                                             X"4D",  --M 
                                                             X"53",  --S
@@ -91,14 +90,15 @@ architecture xc7_top_level_arch of xc7_top_level is
                                                             X"52",  --R
                                                             X"4E",  --N
                                                             X"47",  --G
+                                                            X"0D",  --\r
                                                             X"0A",  --\n
-                                                            X"0A",  --\n
-                                                            X"0D"   --\r
+                                                            X"0D",  --\r
+                                                            X"0A"   --\n
                                                         ); 
                                                           
     constant NEW_LINE           : CHAR_ARRAY(0 to 1) := (
-                                                            X"0A",  --\n
-                                                            X"0D"   --\r  
+                                                            X"0D",  --\r 
+                                                            X"0A"   --\n
                                                         ); 
                                                 
     constant VERT_LINE          : CHAR_ARRAY(0 to 2) := (
@@ -111,19 +111,7 @@ architecture xc7_top_level_arch of xc7_top_level is
                                                             X"20",  --'space'
                                                             X"20",  --'space'
                                                             X"20"   --'space'
-                                                        );                                                         
-                                            
-    constant ONE                : CHAR_ARRAY(0 to 2) := (
-                                                            X"20",  --'space'
-                                                            X"31",  --'1'
-                                                            x"20"   --'space' 
-                                                        );
-                                                                                          
-    constant ZERO               : CHAR_ARRAY(0 to 2) := (
-                                                            X"20",  --'space'
-                                                            X"30",  --'0'
-                                                            x"20"   --'space' 
-                                                        );    
+                                                        );                                                          
 														
     constant RANDOM_NUM         : CHAR_ARRAY(0 to 2) := (
 															X"20",  --'space'
